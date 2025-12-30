@@ -1,0 +1,126 @@
+/* English */
+"app_title" = "Weatherpilot";
+"start_settings" = "Start days & scoring";
+"start_date" = "Start date";
+"duration_days" = "Duration:";
+"horizon_hint" = "Forecast horizon: 16 days";
+"places_section" = "Stages";
+"place_placeholder" = "Enter place";
+"analyze" = "Analyze tour";
+"new_plan" = "New Tour";
+"new_plan_hint" = "Resets all inputs.";
+"reset_confirm_title" = "Tour will be deleted";
+"reset_confirm_message" = "All inputs and results will be removed.";
+"reset_confirm_delete" = "Delete";
+"reset" = "Reset";
+"cancel" = "Cancel";
+"menu_more" = "More options";
+"menu_preferences" = "Preferences";
+"menu_info" = "Info";
+"prefs_nav_title" = "Preferences";
+"prefs_reset_defaults" = "Restore defaults";
+"done" = "Done";
+
+/* Welcome */
+"welcome_title" = "Weatherpilot";
+"welcome_subtitle" = "Weather planning for your tours";
+"welcome_bullet_1" = "16-day forecast horizon";
+"welcome_bullet_2" = "select your duration, put in your destiantions";
+"welcome_bullet_3" = "Share summary as PDF";
+"welcome_cta" = "Get started";
+"welcome_dontshow" = "Don't show again";
+
+/* Preferences v4 */
+"pref_avoid" = "Avoid";
+"pref_neutral" = "Neutral";
+"pref_prefer" = "Prefer";
+
+/* Errors/Alerts v4 */
+"error_title" = "Error";
+"error_unknown" = "Unknown error.";
+"error_place_empty_for_day" = "Please enter a place for every stage.";
+"error_start_out_of_range" = "Start date is outside the allowed range.";
+"error_horizon_too_short" = "Tour duration exceeds the forecast horizon.";
+"error_geocoding_not_found" = "Place not found.";
+"error_no_forecast_for_date" = "No forecast for the selected period.";
+"error_network_generic" = "Network error. Please try again later.";
+
+/* Suggestions */
+"suggestions_title" = "Suggestions";
+"suggestions_none" = "No suggestions";
+"suggestions_more" = "More results…";
+
+/* Help icons */
+"help_start_title" = "Start Date";
+"help_start_text" = "The latest possible start day is limited by the forecast horizon.";
+"help_start_label" = "Start date info";
+"help_start_hint" = "Show explanation about allowed start range.";
+"help_duration_title" = "Duration";
+"help_duration_text" = "The maximum duration is constrained by the start date and the forecast horizon.";
+"help_duration_label" = "Duration info";
+"help_duration_hint" = "Show explanation about allowed duration.";
+
+/* InfoView */
+"info_title" = "Info";
+"info_app_title" = "Weatherpilot";
+"info_app_subtitle" = "Weather planning for tours";
+"info_section_app" = "App";
+"info_version" = "Version";
+"info_version_accessibility" = "Version %@";
+"info_section_data" = "Data sources";
+"info_source_weather" = "Forecast: Open-Meteo Weather API";
+"info_source_geocoding" = "Autocomplete & Geocoding: Open-Meteo Geocoding API";
+"info_section_legal" = "Legal";
+"info_privacy" = "Privacy Policy";
+"info_licenses" = "Licenses / Acknowledgements";
+"info_section_contact" = "Contact";
+"info_contact_email" = "E-mail";
+"info_contact_mailto" = "mailto:christoph.gassl@icloud.com";
+"info_contact_hint" = "Open a prefilled e-mail to support.";
+"info_section_disclaimer" = "Disclaimer";
+"info_disclaimer_text" = "Forecasts may differ from actual weather. Use common sense when making decisions.";
+"close" = "Close";
+"info_name" = "Name";
+"info_developer" = "Developer";
+"info_developer_name" = "Christoph Gassl / CGAS";
+"info_contact_open" = "Email support";
+"info_contact_alt" = "Alternative: christoph.gassl@icloud.com";
+
+/* LicensesView */
+"licenses_title" = "Licenses";
+"licenses_section_thirdparty" = "Third-party components";
+"licenses_open_site" = "Open website of %@";
+"license_notice_openmeteo" = "Open-Meteo provides forecast data. Please review the terms on their website.";
+"license_notice_geocoding" = "Autocomplete and geocoding results are provided by Open-Meteo.";
+"license_notice_apple" = "Apple frameworks (MapKit/CoreLocation) are used under Apple’s terms.";
+"licenses_section_notes" = "Notes";
+"licenses_notes_text" = "Some components link to external licenses. If needed, full license texts can be bundled as resources.";
+
+/* PrivacyPolicyView */
+"privacy_nav_title" = "Privacy";
+"privacy_title" = "Privacy Policy";
+"privacy_intro" = "We care about privacy. The app only processes data required for its functionality.";
+"privacy_collection_title" = "What data is processed?";
+"privacy_collection_text" = "• Entered places/stages (stored locally) • Requests to Open-Meteo (autocomplete and weather). Only the typed place name is transmitted for suggestion generation – no location data, user identifiers, or movement history.";
+"privacy_processing_title" = "What is the data used for?";
+"privacy_processing_text" = "To generate place suggestions (autocomplete) and to display weather forecasts for the selected stages.";
+"privacy_retention_title" = "Retention";
+"privacy_retention_text" = "Settings and stages are stored locally and can be reset anytime via “New Tour”.";
+"privacy_rights_title" = "Your rights";
+"privacy_rights_text" = "You can delete locally stored data (New Tour). For questions, contact support.";
+"privacy_contact_title" = "Contact";
+"privacy_contact_text" = "christoph.gassl@icloud.com";
+"prefs_title" = "Preferences";
+"prefs_intro" = "Choose what you want to avoid. Unselected means neutral (no impact on the score).";
+"prefs_avoid_section" = "Avoid";
+"prefs_avoid_rain_title" = "Rain";
+"prefs_avoid_rain_sub" = "Deducts points with precipitation (linear up to 30 mm).";
+"prefs_avoid_wind_title" = "Wind";
+"prefs_avoid_wind_sub" = "Deducts points above 25 km/h; the stronger, the more penalty.";
+"prefs_avoid_heat_title" = "Heat (> 30 °C)";
+"prefs_avoid_heat_sub" = "Deducts points as daily high rises above 30 °C.";
+"prefs_avoid_cold_title" = "Cold (< 10 °C)";
+"prefs_avoid_cold_sub" = "Deducts points as daily low drops below 10 °C.";
+"prefs_sun_info_title" = "Sun is always preferred";
+"prefs_sun_info_sub" = "Sun hours add bonus points (up to 12 h).";
+"done" = "Done";

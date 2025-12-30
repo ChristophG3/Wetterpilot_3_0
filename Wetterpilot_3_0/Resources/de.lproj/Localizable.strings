@@ -1,0 +1,127 @@
+/* Deutsch */
+"app_title" = "Wetterpilot";
+"start_settings" = "Starttage & Bewertung";
+"start_date" = "Startdatum";
+"duration_days" = "Dauer:";
+"horizon_hint" = "Vorhersagehorizont: 16 Tage";
+"places_section" = "Etappen";
+"place_placeholder" = "Ort eingeben";
+"analyze" = "Tour analysieren";
+"new_plan" = "Neue Tour";
+"new_plan_hint" = "Setzt alle Eingaben zurück.";
+"reset_confirm_title" = "Tour wird gelöscht";
+"reset_confirm_message" = "Alle Eingaben und Ergebnisse werden entfernt.";
+"reset_confirm_delete" = "Löschen";
+"reset" = "Zurücksetzen";
+"cancel" = "Abbrechen";
+"menu_more" = "Weitere Optionen";
+"menu_preferences" = "Einstellungen";
+"menu_info" = "Info";
+"prefs_nav_title" = "Einstellungen";
+"prefs_reset_defaults" = "Standardwerte wiederherstellen";
+"done" = "Fertig";
+
+/* Willkommen */
+"welcome_title" = "Wetterpilot";
+"welcome_subtitle" = "Wetterplanung für Deine Touren";
+"welcome_bullet_1" = "16‑Tage‑Vorhersagehorizont";
+"welcome_bullet_2" = "wähle die Tourdauer, Etappenweise Ortseingabe";
+"welcome_bullet_3" = "Zusammenfassung als PDF teilen";
+"welcome_cta" = "Los geht’s";
+"welcome_dontshow" = "Nicht mehr anzeigen";
+
+/* Präferenzen v4 */
+"pref_avoid" = "Vermeiden";
+"pref_neutral" = "Neutral";
+"pref_prefer" = "Bevorzugen";
+
+/* Fehler/Alerts v4 */
+"error_title" = "Fehler";
+"error_unknown" = "Unbekannter Fehler.";
+"error_place_empty_for_day" = "Bitte gib für jede Etappe einen Ort ein.";
+"error_start_out_of_range" = "Startdatum liegt außerhalb des erlaubten Bereichs.";
+"error_horizon_too_short" = "Tourdauer überschreitet den Vorhersagehorizont.";
+"error_geocoding_not_found" = "Ort nicht gefunden.";
+"error_no_forecast_for_date" = "Keine Vorhersage für den gewählten Zeitraum.";
+"error_network_generic" = "Netzwerkfehler. Bitte später erneut versuchen.";
+
+/* Vorschläge */
+"suggestions_title" = "Vorschläge";
+"suggestions_none" = "Keine Vorschläge";
+"suggestions_more" = "Weitere Ergebnisse…";
+
+/* Hilfe-Icons */
+"help_start_title" = "Startdatum";
+"help_start_text" = "Der spätestmögliche Starttag ist durch den Vorhersagehorizont begrenzt.";
+"help_start_label" = "Info zum Startdatum";
+"help_start_hint" = "Erklärung zum erlaubten Startrahmen anzeigen.";
+"help_duration_title" = "Dauer";
+"help_duration_text" = "Die maximale Dauer ist durch Startdatum und Vorhersagehorizont begrenzt.";
+"help_duration_label" = "Info zur Dauer";
+"help_duration_hint" = "Erklärung zur erlaubten Dauer anzeigen.";
+
+/* InfoView */
+"info_title" = "Info";
+"info_app_title" = "Wetterpilot";
+"info_app_subtitle" = "Wetterplanung für Touren";
+"info_section_app" = "App";
+"info_version" = "Version";
+"info_version_accessibility" = "Version %@";
+"info_section_data" = "Datenquellen";
+"info_source_weather" = "Vorhersage: Open‑Meteo Weather API";
+"info_source_geocoding" = "Autovervollständigung & Geocoding: Open‑Meteo Geocoding API";
+"info_section_legal" = "Rechtliches";
+"info_privacy" = "Datenschutz";
+"info_licenses" = "Lizenzen / Danksagungen";
+"info_section_contact" = "Kontakt";
+"info_contact_email" = "E‑Mail";
+"info_contact_mailto" = "mailto:christoph.gassl@icloud.com";
+"info_contact_hint" = "Öffnet eine vorbefüllte Support‑E‑Mail.";
+"info_section_disclaimer" = "Hinweis";
+"info_disclaimer_text" = "Vorhersagen können vom tatsächlichen Wetter abweichen. Triff Entscheidungen mit gesundem Menschenverstand.";
+"close" = "Schließen";
+"info_name" = "Name";
+"info_developer" = "Entwickler";
+"info_developer_name" = "Christoph Gassl / CGAS";
+"info_contact_open" = "E‑Mail‑Support";
+"info_contact_alt" = "Alternative: christoph.gassl@icloud.com";
+
+/* LicensesView */
+"licenses_title" = "Lizenzen";
+"licenses_section_thirdparty" = "Drittanbieter‑Komponenten";
+"licenses_open_site" = "Website von %@ öffnen";
+"license_notice_openmeteo" = "Open‑Meteo stellt Vorhersagedaten bereit. Bitte prüfe die Bedingungen auf deren Website.";
+"license_notice_geocoding" = "Autovervollständigung und Geocoding werden von Open‑Meteo bereitgestellt.";
+"license_notice_apple" = "Apple‑Frameworks (MapKit/CoreLocation) werden gemäß Apples Bedingungen genutzt.";
+"licenses_section_notes" = "Hinweise";
+"licenses_notes_text" = "Einige Komponenten verlinken auf externe Lizenzen. Falls nötig, können vollständige Lizenztexte als Ressourcen beigefügt werden.";
+
+/* PrivacyPolicyView */
+"privacy_nav_title" = "Datenschutz";
+"privacy_title" = "Datenschutzerklärung";
+"privacy_intro" = "Datenschutz ist uns wichtig. Die App verarbeitet nur Daten, die für ihre Funktionalität erforderlich sind.";
+"privacy_collection_title" = "Welche Daten werden verarbeitet?";
+"privacy_collection_text" = "• Eingegebene Orte/Etappen (lokal gespeichert) • Anfragen an Open‑Meteo (Autovervollständigung und Wetter). Für die Vorschläge wird nur der eingegebene Ortsname übertragen – keine Standortdaten, Nutzerkennungen oder Bewegungshistorien.";
+"privacy_processing_title" = "Wofür werden die Daten verwendet?";
+"privacy_processing_text" = "Zur Generierung von Ortsvorschlägen (Autovervollständigung) und zur Anzeige von Wettervorhersagen für die ausgewählten Etappen.";
+"privacy_retention_title" = "Aufbewahrung";
+"privacy_retention_text" = "Einstellungen und Etappen werden lokal gespeichert und können jederzeit über „Neue Tour“ zurückgesetzt werden.";
+"privacy_rights_title" = "Deine Rechte";
+"privacy_rights_text" = "Du kannst lokal gespeicherte Daten löschen (Neue Tour). Bei Fragen wende dich an den Support.";
+"privacy_contact_title" = "Kontakt";
+"privacy_contact_text" = "christoph.gassl@icloud.com";
+
+"prefs_title" = "Präferenzen";
+"prefs_intro" = "Wähle, was du vermeiden möchtest. Nicht ausgewählt bedeutet neutral (kein Einfluss auf den Score).";
+"prefs_avoid_section" = "Vermeiden";
+"prefs_avoid_rain_title" = "Regen";
+"prefs_avoid_rain_sub" = "Weniger Punkte bei Niederschlag (linear bis 30 mm).";
+"prefs_avoid_wind_title" = "Wind";
+"prefs_avoid_wind_sub" = "Weniger Punkte ab 25 km/h, je stärker desto mehr Abzug.";
+"prefs_avoid_heat_title" = "Hitze (> 30 °C)";
+"prefs_avoid_heat_sub" = "Weniger Punkte, je höher die Tageshöchsttemperatur über 30 °C liegt.";
+"prefs_avoid_cold_title" = "Kälte (< 10 °C)";
+"prefs_avoid_cold_sub" = "Weniger Punkte, je niedriger die Tagestiefsttemperatur unter 10 °C liegt.";
+"prefs_sun_info_title" = "Sonne ist immer bevorzugt";
+"prefs_sun_info_sub" = "Sonnenstunden geben Bonuspunkte (bis 12 h).";
+"done" = "Fertig";

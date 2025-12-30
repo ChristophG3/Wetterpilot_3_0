@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ViewController">
+    <scenes>
+        <scene sceneID="Scene">
+            <objects>
+                <viewController id="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="View">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <color key="backgroundColor" name="LaunchBackground" catalog="System" colorSpace="catalog"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Logo">
+                                <rect key="frame" x="135" y="362" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="w"/>
+                                    <constraint firstAttribute="height" constant="120" id="h"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Logo" firstAttribute="centerX" secondItem="View" secondAttribute="centerX" id="cx"/>
+                            <constraint firstItem="Logo" firstAttribute="centerY" secondItem="View" secondAttribute="centerY" id="cy"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FirstResponder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AppLogo" width="120" height="120"/>
+        <namedColor name="LaunchBackground"/>
+    </resources>
+</document>
