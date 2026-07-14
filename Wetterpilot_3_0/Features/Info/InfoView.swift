@@ -2,6 +2,8 @@ import SwiftUI
 
 struct InfoView: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("temperatureUnit") private var temperatureUnitRaw = TemperatureUnit.celsius.rawValue
+    @AppStorage("windSpeedUnit") private var windUnitRaw = WindSpeedUnit.kilometersPerHour.rawValue
 
     private var displayName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
@@ -37,6 +39,32 @@ struct InfoView: View {
                     InfoCard {
                         Link(destination: URL(string: "mailto:christoph.gassl@icloud.com")!) {
                             InfoLinkRow(title: "E-Mail-Support", subtitle: "christoph.gassl@icloud.com", icon: "envelope")
+                        }
+                        .buttonStyle(.plain)
+                    }
+
+                    InfoSectionHeader(String(localized: "settings.units"))
+                    InfoCard {
+                        Picker(String(localized: "settings.temperature"), selection: $temperatureUnitRaw) {
+                            Text("°C").tag(TemperatureUnit.celsius.rawValue)
+                            Text("°F").tag(TemperatureUnit.fahrenheit.rawValue)
+                        }
+                        .pickerStyle(.segmented)
+                        Picker(String(localized: "settings.wind"), selection: $windUnitRaw) {
+                            Text("km/h").tag(WindSpeedUnit.kilometersPerHour.rawValue)
+                            Text("mph").tag(WindSpeedUnit.milesPerHour.rawValue)
+                        }
+                        .pickerStyle(.segmented)
+                    }
+
+                    InfoSectionHeader(String(localized: "weather.dataSource"))
+                    InfoCard {
+                        Link(destination: URL(string: "https://open-meteo.com/")!) {
+                            InfoLinkRow(
+                                title: "Open-Meteo",
+                                subtitle: String(localized: "weather.attribution.detail"),
+                                icon: "cloud.sun"
+                            )
                         }
                         .buttonStyle(.plain)
                     }

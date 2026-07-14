@@ -7,6 +7,7 @@ final class Trip {
     var name: String
     var createdAt: Date
     var updatedAt: Date
+    var forecastNotificationEnabled: Bool = false
 
     @Relationship(deleteRule: .cascade, inverse: \TripSegment.trip)
     var segments: [TripSegment]
@@ -16,12 +17,14 @@ final class Trip {
         name: String,
         createdAt: Date = .now,
         updatedAt: Date = .now,
+        forecastNotificationEnabled: Bool = false,
         segments: [TripSegment] = []
     ) {
         self.id = id
         self.name = name
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.forecastNotificationEnabled = forecastNotificationEnabled
         self.segments = segments
     }
 

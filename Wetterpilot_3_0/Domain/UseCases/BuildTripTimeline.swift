@@ -10,15 +10,15 @@ enum TimelineError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .emptyTrip:
-            return "Füge mindestens einen Ort hinzu."
+            return String(localized: "timeline.error.emptyTrip")
         case .emptyPlace:
-            return "Jeder Aufenthalt benötigt einen Ort."
+            return String(localized: "timeline.error.emptyPlace")
         case .invalidDateRange:
-            return "Das Enddatum darf nicht vor dem Startdatum liegen."
+            return String(localized: "timeline.error.invalidDateRange")
         case .overlappingSegments:
-            return "Aufenthalte dürfen sich nur an einem gemeinsamen Wechseltag überschneiden."
+            return String(localized: "timeline.error.overlap")
         case .gapBetweenSegments:
-            return "Jedem Reisetag muss ein fester Ort zugeordnet sein."
+            return String(localized: "timeline.error.gap")
         }
     }
 }

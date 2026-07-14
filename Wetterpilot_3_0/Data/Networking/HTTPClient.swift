@@ -7,9 +7,9 @@ enum HTTPError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidResponse:
-            return "Der Wetterdienst hat keine gültige Antwort gesendet."
+            return String(localized: "network.error.invalidResponse")
         case .statusCode(let code):
-            return "Der Wetterdienst meldet den Fehlercode \(code)."
+            return String(localized: "network.error.statusCode \(code)")
         }
     }
 }
@@ -30,4 +30,3 @@ struct HTTPClient {
         return data
     }
 }
-

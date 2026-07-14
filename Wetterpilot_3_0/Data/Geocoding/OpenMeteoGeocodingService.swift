@@ -27,9 +27,9 @@ enum GeocodingError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "Die Ortssuche konnte nicht gestartet werden."
+            return String(localized: "geocoding.error.invalidURL")
         case .placeNotFound(let place):
-            return "Der Ort „\(place)“ wurde nicht gefunden."
+            return String(localized: "geocoding.error.notFound \(place)")
         }
     }
 }
@@ -53,7 +53,7 @@ struct OpenMeteoGeocodingService {
         components?.queryItems = [
             URLQueryItem(name: "name", value: query),
             URLQueryItem(name: "count", value: String(max(1, min(limit, 10)))),
-            URLQueryItem(name: "language", value: "de"),
+            URLQueryItem(name: "language", value: Locale.current.language.languageCode?.identifier ?? "de"),
             URLQueryItem(name: "format", value: "json")
         ]
         guard let url = components?.url else { throw GeocodingError.invalidURL }

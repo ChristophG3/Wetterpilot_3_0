@@ -235,6 +235,16 @@ struct TripEditorView: View {
 
         do {
             try modelContext.save()
+            if storedTrip.forecastNotificationEnabled, let start = storedTrip.startDate {
+                Task {
+                    try? await ForecastNotificationManager().schedule(
+                        tripID: storedTrip.id,
+                        tripName: storedTrip.name,
+                        firstTravelDate: start,
+                        calendar: .autoupdatingCurrent
+                    )
+                }
+            }
             dismiss()
         } catch {
             errorMessage = "Die Reise konnte nicht gespeichert werden."
