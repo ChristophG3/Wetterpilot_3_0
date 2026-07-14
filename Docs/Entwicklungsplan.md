@@ -451,3 +451,30 @@ Falls keine abweichenden Anforderungen bestehen:
 - Timeline als Hauptansicht, Karte später
 - lokales SwiftData ohne Konto oder Cloud-Synchronisierung
 - Startdatum-Vergleich nach dem stabilen MVP
+
+## 16. Phase 2 – Vergleich alternativer Reiseorte
+
+Phase 2 ergänzt einen eigenständigen Ortsvergleich für einen gemeinsamen
+Von-/Bis-Zeitraum. Ein Vergleich enthält zwei bis sechs Kandidaten. Für alle
+Kennzahlen werden ausschließlich Kalendertage berücksichtigt, für die bei
+jedem Kandidaten eine Prognose vorliegt. Damit werden keine unterschiedlich
+langen oder unvollständigen Datenreihen gegeneinander gestellt.
+
+Die Übersicht zeigt je Kandidat die Anzahl gemeinsamer Tage, voraussichtlich
+trockene Tage, Niederschlagssumme, höchste Regenwahrscheinlichkeit,
+Temperaturbereich, Wind, Böen und Wetterhinweise. Regelbasierte Tendenzen
+benennen konkrete Unterschiede bei trockenen Tagen, Niederschlag oder Wind.
+Es gibt keinen Gesamtscore und bei unzureichender gemeinsamer Datenbasis keine
+Rangfolge.
+
+Ein Tag gilt als **voraussichtlich trocken**, wenn seine prognostizierte
+Regenwahrscheinlichkeit unter 50 Prozent liegt und die Niederschlagsmenge
+zugleich unter 1,0 mm bleibt. Fehlt die Regenwahrscheinlichkeit, zählt der Tag
+nicht als trocken. Diese Definition ist zentral in der Vergleichslogik
+hinterlegt und durch Unit-Tests abgesichert.
+
+Vergleiche verwenden denselben persistenten Wettercache und Offline-Fallback
+wie Reisen. Prognosen außerhalb des Open-Meteo-Fensters bleiben ausdrücklich
+nicht verfügbar. Ein Kandidat kann ohne Modell-Sonderweg in eine normale Reise
+mit einem Aufenthalt für den vollständigen Vergleichszeitraum umgewandelt
+werden.

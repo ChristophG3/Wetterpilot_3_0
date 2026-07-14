@@ -4,9 +4,11 @@ import SwiftUI
 struct TripListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Trip.updatedAt, order: .reverse) private var trips: [Trip]
-    @State private var path: [Trip] = []
+    @Query(sort: \DestinationComparison.updatedAt, order: .reverse) private var comparisons: [DestinationComparison]
+    @State private var path = NavigationPath()
     @State private var showsNewTrip = false
     @State private var showsQuickTrip = false
+    @State private var showsNewComparison = false
     @State private var showsInfo = false
 
     var body: some View {
@@ -22,8 +24,29 @@ struct TripListView: View {
                         } icon: { Image(systemName: "calendar.badge.checkmark").font(.title2) }
                         .frame(minHeight: 52)
                     }
+                    Button { showsNewComparison = true } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(String(localized: "comparison.entry.title")).font(.headline)
+                                Text(String(localized: "comparison.entry.subtitle")).font(.caption).foregroundStyle(AppTheme.secondaryText)
+                            }
+                        } icon: { Image(systemName: "arrow.left.arrow.right.circle.fill").font(.title2) }
+                        .frame(minHeight: 52)
+                    }
                 }
                 .themedListRow()
+
+                if !comparisons.isEmpty {
+                    Section {
+                        ForEach(comparisons) { comparison in
+                            NavigationLink(value: comparison) { ComparisonRow(comparison: comparison) }.themedListRow()
+                        }
+                        .onDelete(perform: deleteComparisons)
+                    } header: {
+                        Text(String(localized: "comparison.myComparisons"))
+                            .font(.title2.bold()).foregroundStyle(AppTheme.primaryText).textCase(nil)
+                    }
+                }
 
                 Section {
                     if trips.isEmpty {
@@ -57,6 +80,7 @@ struct TripListView: View {
                     Menu {
                         Button { showsNewTrip = true } label: { Label(String(localized: "trip.new"), systemImage: "map") }
                         Button { showsQuickTrip = true } label: { Label(String(localized: "quickTrip.title"), systemImage: "calendar.badge.checkmark") }
+                        Button { showsNewComparison = true } label: { Label(String(localized: "comparison.entry.title"), systemImage: "arrow.left.arrow.right.circle") }
                     } label: { Image(systemName: "plus").frame(minWidth: 44, minHeight: 44) }
                     .accessibilityLabel(String(localized: "trip.add"))
                 }
@@ -65,10 +89,23 @@ struct TripListView: View {
             .sheet(isPresented: $showsQuickTrip) {
                 QuickTripView { trip in Task { @MainActor in path.append(trip) } }
             }
+            .sheet(isPresented: $showsNewComparison) {
+                ComparisonEditorView { comparison in Task { @MainActor in path.append(comparison) } }
+            }
             .sheet(isPresented: $showsInfo) { InfoView() }
             .navigationDestination(for: Trip.self) { TripOverviewView(trip: $0) }
+            .navigationDestination(for: DestinationComparison.self) { ComparisonOverviewView(comparison: $0) }
             .appScreenStyle()
         }
+    }
+
+    private func deleteComparisons(at offsets: IndexSet) {
+        for index in offsets {
+            let comparison = comparisons[index]
+            ForecastNotificationManager().removeComparison(comparisonID: comparison.id)
+            modelContext.delete(comparison)
+        }
+        try? modelContext.save()
     }
 
     private func deleteTrips(at offsets: IndexSet) {
@@ -78,6 +115,20 @@ struct TripListView: View {
             modelContext.delete(trip)
         }
         try? modelContext.save()
+    }
+}
+
+private struct ComparisonRow: View {
+    let comparison: DestinationComparison
+    var body: some View {
+        VStack(alignment: .leading, spacing: 7) {
+            Text(comparison.name).font(.headline)
+            Text("\(comparison.startDate.formatted(.dateTime.day().month(.wide))) – \(comparison.endDate.formatted(.dateTime.day().month(.wide)))")
+                .font(.subheadline).foregroundStyle(AppTheme.secondaryText)
+            Label(String(localized: "comparison.placeCount \(comparison.candidates.count)"), systemImage: "arrow.left.arrow.right")
+                .font(.caption).foregroundStyle(AppTheme.secondaryText)
+        }
+        .padding(.vertical, 7).accessibilityElement(children: .combine)
     }
 }
 

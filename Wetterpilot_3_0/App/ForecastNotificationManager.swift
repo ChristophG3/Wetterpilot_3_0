@@ -9,6 +9,9 @@ protocol ForecastNotificationScheduling {
 
 struct ForecastNotificationPlanner {
     static func identifier(for tripID: UUID) -> String { "forecast-available-\(tripID.uuidString)" }
+    static func comparisonIdentifier(for comparisonID: UUID) -> String {
+        "comparison-forecast-available-\(comparisonID.uuidString)"
+    }
 
     static func notificationDate(
         firstTravelDate: Date,
@@ -57,5 +60,34 @@ final class ForecastNotificationManager: ForecastNotificationScheduling {
 
     func remove(tripID: UUID) {
         center.removePendingNotificationRequests(withIdentifiers: [ForecastNotificationPlanner.identifier(for: tripID)])
+    }
+
+    func scheduleComparison(
+        comparisonID: UUID,
+        comparisonName: String,
+        startDate: Date,
+        calendar: Calendar = .autoupdatingCurrent
+    ) async throws {
+        removeComparison(comparisonID: comparisonID)
+        guard let fireDate = ForecastNotificationPlanner.notificationDate(
+            firstTravelDate: startDate, calendar: calendar
+        ) else { return }
+        let content = UNMutableNotificationContent()
+        content.title = String(localized: "comparison.notification.title")
+        content.body = String(localized: "comparison.notification.body \(comparisonName)")
+        content.sound = .default
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fireDate)
+        let request = UNNotificationRequest(
+            identifier: ForecastNotificationPlanner.comparisonIdentifier(for: comparisonID),
+            content: content,
+            trigger: UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        )
+        try await center.add(request)
+    }
+
+    func removeComparison(comparisonID: UUID) {
+        center.removePendingNotificationRequests(
+            withIdentifiers: [ForecastNotificationPlanner.comparisonIdentifier(for: comparisonID)]
+        )
     }
 }
