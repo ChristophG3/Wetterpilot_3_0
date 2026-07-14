@@ -125,8 +125,10 @@ struct ComparisonEditorView: View {
                             if !place.subtitle.isEmpty { Text(place.subtitle).font(.caption).foregroundStyle(AppTheme.secondaryText) }
                         }
                     } icon: { Image(systemName: "mappin.circle.fill") }
-                    .frame(minHeight: 44)
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
             }
         }
         .padding(.vertical, 4)
