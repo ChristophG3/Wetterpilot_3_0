@@ -23,6 +23,24 @@ struct ForecastNotificationPlanner {
         date = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: date) ?? date
         return date > now ? date : nil
     }
+
+    static func flexibleComparisonNotificationDate(
+        originalEndDate: Date,
+        flexibility: TripStartFlexibility,
+        now: Date = .now,
+        calendar: Calendar = .autoupdatingCurrent
+    ) -> Date? {
+        guard let latestRequiredTravelDate = calendar.date(
+            byAdding: .day,
+            value: flexibility.maximumOffset,
+            to: calendar.startOfDay(for: originalEndDate)
+        ) else { return nil }
+        return notificationDate(
+            firstTravelDate: latestRequiredTravelDate,
+            now: now,
+            calendar: calendar
+        )
+    }
 }
 
 final class ForecastNotificationManager: ForecastNotificationScheduling {
@@ -60,6 +78,33 @@ final class ForecastNotificationManager: ForecastNotificationScheduling {
 
     func remove(tripID: UUID) {
         center.removePendingNotificationRequests(withIdentifiers: [ForecastNotificationPlanner.identifier(for: tripID)])
+    }
+
+    func scheduleFlexibleTrip(
+        tripID: UUID,
+        tripName: String,
+        originalEndDate: Date,
+        flexibility: TripStartFlexibility,
+        calendar: Calendar = .autoupdatingCurrent
+    ) async throws {
+        remove(tripID: tripID)
+        guard let fireDate = ForecastNotificationPlanner.flexibleComparisonNotificationDate(
+            originalEndDate: originalEndDate,
+            flexibility: flexibility,
+            calendar: calendar
+        ) else { return }
+
+        let content = UNMutableNotificationContent()
+        content.title = String(localized: "notification.flexibleForecastAvailable.title")
+        content.body = String(localized: "notification.flexibleForecastAvailable.body \(tripName)")
+        content.sound = .default
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fireDate)
+        let request = UNNotificationRequest(
+            identifier: ForecastNotificationPlanner.identifier(for: tripID),
+            content: content,
+            trigger: UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        )
+        try await center.add(request)
     }
 
     func scheduleComparison(

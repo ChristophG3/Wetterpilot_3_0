@@ -83,6 +83,7 @@ final class TripWeatherModel: ObservableObject {
     @Published private(set) var errorsBySegment: [UUID: String] = [:]
     @Published private(set) var state: ForecastState = .loading
     @Published private(set) var lastUpdated: Date?
+    @Published private(set) var usesStaleData = false
 
     var isLoading: Bool { if case .loading = state { return true }; return false }
 
@@ -163,6 +164,7 @@ final class TripWeatherModel: ObservableObject {
         }
 
         weatherByDay = loaded
+        usesStaleData = usedExpiredCache
         // The trip-level timestamp is conservative when several places were
         // fetched at different times.
         lastUpdated = fetchDates.min()
@@ -188,10 +190,11 @@ final class TripWeatherModel: ObservableObject {
     }
 
     private func forecastState(trip: Trip, loaded: [WeatherDayKey: WeatherDay], stale: Bool) -> ForecastState {
-        let segments = trip.sortedSegments.map {
-            TimelineSegment(id: $0.id, placeName: $0.placeName, startDate: $0.startDate, endDate: $0.endDate)
-        }
-        let timeline = (try? BuildTripTimeline()(segments: segments)) ?? []
+        let snapshots = trip.sortedSegments.map(FlexibleTripSegmentSnapshot.init)
+        let timeline = ((try? BuildFlexibleTripCandidates()(
+            segments: snapshots,
+            flexibility: trip.startFlexibility
+        )) ?? []).flatMap(\.shiftedTimeline)
         let forecastDates = Set(loaded.keys.map(\.dateISO))
         let availability = ForecastAvailability.evaluate(travelDates: timeline.map(\.date), forecastDates: forecastDates)
 
@@ -213,5 +216,21 @@ final class TripWeatherModel: ObservableObject {
         segment.longitude = place.longitude
         segment.timeZoneIdentifier = place.timeZoneIdentifier
         return place
+    }
+
+    func flexibleComparison(
+        trip: Trip,
+        preferences: TravelWeatherPreferences,
+        now: Date = .now,
+        calendar: Calendar = .autoupdatingCurrent
+    ) -> FlexibleTripStartComparison {
+        FlexibleTripStartEngine.compare(
+            segments: trip.sortedSegments.map(FlexibleTripSegmentSnapshot.init),
+            flexibility: trip.startFlexibility,
+            weatherByDay: weatherByDay,
+            preferences: preferences,
+            now: now,
+            calendar: calendar
+        )
     }
 }

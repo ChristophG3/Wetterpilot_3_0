@@ -8,6 +8,7 @@ final class Trip {
     var createdAt: Date
     var updatedAt: Date
     var forecastNotificationEnabled: Bool = false
+    var startFlexibilityRawValue: String = TripStartFlexibility.exact.rawValue
 
     @Relationship(deleteRule: .cascade, inverse: \TripSegment.trip)
     var segments: [TripSegment]
@@ -18,6 +19,7 @@ final class Trip {
         createdAt: Date = .now,
         updatedAt: Date = .now,
         forecastNotificationEnabled: Bool = false,
+        startFlexibility: TripStartFlexibility = .exact,
         segments: [TripSegment] = []
     ) {
         self.id = id
@@ -25,6 +27,7 @@ final class Trip {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.forecastNotificationEnabled = forecastNotificationEnabled
+        self.startFlexibilityRawValue = startFlexibility.rawValue
         self.segments = segments
     }
 
@@ -39,4 +42,9 @@ final class Trip {
 
     var startDate: Date? { segments.map(\.startDate).min() }
     var endDate: Date? { segments.map(\.endDate).max() }
+
+    var startFlexibility: TripStartFlexibility {
+        get { TripStartFlexibility(rawValue: startFlexibilityRawValue) ?? .exact }
+        set { startFlexibilityRawValue = newValue.rawValue }
+    }
 }

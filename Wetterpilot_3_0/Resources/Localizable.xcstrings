@@ -185,6 +185,22 @@
         }
       }
     },
+    "common.done" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
     "common.edit" : {
       "localizations" : {
         "de" : {
@@ -197,6 +213,838 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit"
+          }
+        }
+      }
+    },
+    "common.save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "comparison.addPlace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiteren Ort hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add another place"
+          }
+        }
+      }
+    },
+    "comparison.candidates" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places"
+          }
+        }
+      }
+    },
+    "comparison.candidates.help" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindestens 2, maximal 6 Orte. Alle Orte werden für exakt denselben Zeitraum verglichen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At least 2 and at most 6 places. Every place is compared for exactly the same period."
+          }
+        }
+      }
+    },
+    "comparison.convertToTrip" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als Reise übernehmen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convert to trip"
+          }
+        }
+      }
+    },
+    "comparison.day.candidateUnavailable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für diesen Ort noch nicht verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not available for this place yet"
+          }
+        }
+      }
+    },
+    "comparison.day.comparable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Orte besitzen eine Vorhersage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All places have a forecast"
+          }
+        }
+      }
+    },
+    "comparison.day.incomplete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht für alle Orte verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not available for every place"
+          }
+        }
+      }
+    },
+    "comparison.days" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagesvergleich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily comparison"
+          }
+        }
+      }
+    },
+    "comparison.dryDefinition" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voraussichtlich trocken: Regenwahrscheinlichkeit unter 50 % und Niederschlag unter 1,0 mm. Ein fehlender Wahrscheinlichkeitswert zählt nicht als trocken."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expected dry: rain probability below 50% and precipitation below 1.0 mm. A missing probability does not count as dry."
+          }
+        }
+      }
+    },
+    "comparison.edit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleich bearbeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit comparison"
+          }
+        }
+      }
+    },
+    "comparison.entry.subtitle" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kostenlos alternative Reiseorte im gleichen Zeitraum vergleichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare alternative destinations for the same dates for free"
+          }
+        }
+      }
+    },
+    "comparison.entry.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orte vergleichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare places"
+          }
+        }
+      }
+    },
+    "comparison.error.dateRange" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Enddatum darf nicht vor dem Startdatum liegen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The end date cannot be before the start date."
+          }
+        }
+      }
+    },
+    "comparison.error.duplicatePlace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle unterschiedliche Orte für den Vergleich."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose different places for the comparison."
+          }
+        }
+      }
+    },
+    "comparison.error.emptyPlace" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeder Kandidat benötigt einen gültigen Ort."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every candidate needs a valid place."
+          }
+        }
+      }
+    },
+    "comparison.error.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleich noch nicht vollständig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparison is incomplete"
+          }
+        }
+      }
+    },
+    "comparison.error.tooFew" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge mindestens zwei gültige Orte hinzu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add at least two valid places."
+          }
+        }
+      }
+    },
+    "comparison.error.tooMany" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es können maximal sechs Orte verglichen werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Up to six places can be compared."
+          }
+        }
+      }
+    },
+    "comparison.forecast.available" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleich vollständig verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparison fully available"
+          }
+        }
+      }
+    },
+    "comparison.forecast.partial" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleich teilweise verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparison partially available"
+          }
+        }
+      }
+    },
+    "comparison.from" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From"
+          }
+        }
+      }
+    },
+    "comparison.generatedName %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ oder %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ or %@"
+          }
+        }
+      }
+    },
+    "comparison.loading.detail" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterdaten für alle Orte werden geprüft."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking weather data for all places."
+          }
+        }
+      }
+    },
+    "comparison.metric.days" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeinsame Tage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared days"
+          }
+        }
+      }
+    },
+    "comparison.metric.dryDays" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trockene Tage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dry days"
+          }
+        }
+      }
+    },
+    "comparison.metric.rainProbability" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Höchste Regenwahrscheinlichkeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highest rain probability"
+          }
+        }
+      }
+    },
+    "comparison.metric.rainSum" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niederschlagssumme"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total precipitation"
+          }
+        }
+      }
+    },
+    "comparison.metric.temperature" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperaturbereich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature range"
+          }
+        }
+      }
+    },
+    "comparison.metric.wind" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind und Böen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind and gusts"
+          }
+        }
+      }
+    },
+    "comparison.metric.windAndGust %@ %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind %@, Böen %@ %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind %@, gusts %@ %@"
+          }
+        }
+      }
+    },
+    "comparison.myComparisons" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meine Vergleiche"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My comparisons"
+          }
+        }
+      }
+    },
+    "comparison.name.optional" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name (optional)"
+          }
+        }
+      }
+    },
+    "comparison.new" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuer Ortsvergleich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New place comparison"
+          }
+        }
+      }
+    },
+    "comparison.notification.body %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für „%@“ sollten jetzt Wetterdaten abrufbar sein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather data should now be available for “%@”."
+          }
+        }
+      }
+    },
+    "comparison.notification.enable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei Vergleichsverfügbarkeit erinnern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notify when comparison becomes available"
+          }
+        }
+      }
+    },
+    "comparison.notification.explanation.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpilot kann einmal lokal benachrichtigen, wenn der gemeinsame Zeitraum in das 16-Tage-Fenster gelangt. Es gibt keine Zusage für Hintergrundaktualisierungen oder Wetteränderungsmeldungen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpilot can send one local notification when the shared period enters the 16-day window. It does not promise background updates or weather-change notifications."
+          }
+        }
+      }
+    },
+    "comparison.notification.explanation.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erinnerung für den Ortsvergleich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reminder for the place comparison"
+          }
+        }
+      }
+    },
+    "comparison.notification.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Ortsvergleich ist im Vorhersagefenster"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your place comparison is in the forecast window"
+          }
+        }
+      }
+    },
+    "comparison.overview" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleich auf gemeinsamen Tagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparison on shared days"
+          }
+        }
+      }
+    },
+    "comparison.period" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemeinsamer Zeitraum"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shared period"
+          }
+        }
+      }
+    },
+    "comparison.place" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ort"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place"
+          }
+        }
+      }
+    },
+    "comparison.placeCount %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Orte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld places"
+          }
+        }
+      }
+    },
+    "comparison.sharedDays.partial %lld %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erst %1$lld von %2$lld Tagen gemeinsam vergleichbar. Weitere Daten voraussichtlich ab %3$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only %1$lld of %2$lld days are comparable. More data expected from %3$@."
+          }
+        }
+      }
+    },
+    "comparison.sharedDays.updated %lld %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld Tagen gemeinsam vergleichbar. Aktualisiert: %3$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %2$lld days comparable. Updated: %3$@."
+          }
+        }
+      }
+    },
+    "comparison.tendencies" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachvollziehbare Tendenzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explainable tendencies"
+          }
+        }
+      }
+    },
+    "comparison.tendencies.equal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf gemeinsamer Datenbasis ergibt sich keine eindeutige Tendenz."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no clear tendency on the shared data."
+          }
+        }
+      }
+    },
+    "comparison.tendencies.insufficient" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Rangfolge: Die gemeinsame Datenbasis reicht nicht aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ranking yet: there is not enough shared data."
+          }
+        }
+      }
+    },
+    "comparison.tendency.dry %@ %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$lld mehr voraussichtlich trockene Tage als der nächstbeste Ort."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$lld more expected dry days than the next-best place."
+          }
+        }
+      }
+    },
+    "comparison.tendency.rain %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: rund %2$@ mm weniger Niederschlag als der nächstbeste Ort."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: about %2$@ mm less precipitation than the next-best place."
+          }
+        }
+      }
+    },
+    "comparison.tendency.wind %@ %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: stärkster Wind rund %2$@ %3$@ niedriger als beim nächstbesten Ort."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: maximum wind about %2$@ %3$@ lower than the next-best place."
+          }
+        }
+      }
+    },
+    "comparison.to" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bis"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To"
           }
         }
       }
@@ -1178,6 +2026,54 @@
         }
       }
     },
+    "notification.flexible.explanation.body" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpilot kann einmal lokal benachrichtigen, wenn alle flexiblen Startvarianten voraussichtlich fair verglichen werden können. Es gibt keine Zusage für Hintergrundaktualisierungen oder Wetteränderungsmeldungen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpilot can send one local notification when all flexible start options are expected to be fairly comparable. It does not promise background updates or weather-change notifications."
+          }
+        }
+      }
+    },
+    "notification.flexibleForecastAvailable.body %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für „%@“ sollten die flexiblen Starttage jetzt vergleichbar sein."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The flexible start dates for “%@” should now be comparable."
+          }
+        }
+      }
+    },
+    "notification.flexibleForecastAvailable.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Starttage sind im Vorhersagefenster"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your start dates are in the forecast window"
+          }
+        }
+      }
+    },
     "notification.forecastAvailable.body %@" : {
       "localizations" : {
         "de" : {
@@ -1710,6 +2606,22 @@
         }
       }
     },
+    "trip.day.accessibility.weather %@ %@ %@ %@ %@ %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@ bis %4$@ %5$@, %6$lld Prozent Regenwahrscheinlichkeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@ to %4$@ %5$@, %6$lld percent chance of rain"
+          }
+        }
+      }
+    },
     "trip.empty.description" : {
       "localizations" : {
         "de" : {
@@ -1738,6 +2650,558 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No trips yet"
+          }
+        }
+      }
+    },
+    "trip.flexibility.editorExplanation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei flexiblen Starttagen wird die gesamte Reise gemeinsam früher oder später dargestellt. Deine gespeicherten Aufenthalte bleiben unverändert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With flexible start dates, the entire trip is shown earlier or later as one unit. Your saved stays remain unchanged."
+          }
+        }
+      }
+    },
+    "trip.flexibility.exact" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genau"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exact"
+          }
+        }
+      }
+    },
+    "trip.flexibility.plusMinusOneDay" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "± 1 Tag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "± 1 day"
+          }
+        }
+      }
+    },
+    "trip.flexibility.plusMinusTwoDays" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "± 2 Tage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "± 2 days"
+          }
+        }
+      }
+    },
+    "trip.flexibility.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flexible Starttage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flexible start dates"
+          }
+        }
+      }
+    },
+    "trip.flexible.assessment.favorable" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günstig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorable"
+          }
+        }
+      }
+    },
+    "trip.flexible.assessment.mixed" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchwachsen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed"
+          }
+        }
+      }
+    },
+    "trip.flexible.assessment.recommended" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empfohlen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended"
+          }
+        }
+      }
+    },
+    "trip.flexible.assessment.unavailable" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch nicht bewertbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not assessable yet"
+          }
+        }
+      }
+    },
+    "trip.flexible.assessment.unfavorable" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungünstig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unfavorable"
+          }
+        }
+      }
+    },
+    "trip.flexible.candidateLabel %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · %@"
+          }
+        }
+      }
+    },
+    "trip.flexible.earlier %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Tag(e) früher"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld day(s) earlier"
+          }
+        }
+      }
+    },
+    "trip.flexible.forecastComplete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vollständige Vorhersage für alle Reisetage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complete forecast for all travel days"
+          }
+        }
+      }
+    },
+    "trip.flexible.forecastPartial %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld Reisetagen verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %2$lld travel days available"
+          }
+        }
+      }
+    },
+    "trip.flexible.forecastPartialExpected %lld %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld Reisetagen verfügbar · vollständig voraussichtlich ab %3$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %2$lld travel days available · expected complete from %3$@"
+          }
+        }
+      }
+    },
+    "trip.flexible.forecastUnavailableExpected %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorhersage noch nicht verfügbar · voraussichtlich ab %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast not yet available · expected from %@"
+          }
+        }
+      }
+    },
+    "trip.flexible.header" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starttag vergleichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare start date"
+          }
+        }
+      }
+    },
+    "trip.flexible.later %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Tag(e) später"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld day(s) later"
+          }
+        }
+      }
+    },
+    "trip.flexible.noFairRecommendation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine faire Empfehlung möglich. Die ursprüngliche Reisevariante bleibt ausgewählt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fair recommendation is not possible yet. The original trip option remains selected."
+          }
+        }
+      }
+    },
+    "trip.flexible.original" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Original"
+          }
+        }
+      }
+    },
+    "trip.flexible.pickerHint" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine frühere, ursprüngliche oder spätere Variante. Die gespeicherte Reise wird nicht verändert."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an earlier, original, or later option. The saved trip is not changed."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.cold %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kühle Bedingungen an %1$lld Reisetag(en), bis %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cold conditions on %1$lld travel day(s), down to %2$@."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.gust %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starke Böen an %1$lld Reisetag(en), bis %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strong gusts on %1$lld travel day(s), up to %2$@."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.heat %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hohe Temperaturen an %1$lld Reisetag(en), bis %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High temperatures on %1$lld travel day(s), up to %2$@."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.incomplete %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld von %2$lld Reisetagen besitzen bereits Wetterdaten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %2$lld travel days already have weather data."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.none" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Reisetag überschreitet deine aktiven Wettergrenzen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No travel day exceeds your active weather thresholds."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.precipitation %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Größere Niederschlagsmenge an %1$lld Reisetag(en), bis %2$@ mm."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higher precipitation on %1$lld travel day(s), up to %2$@ mm."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.rainProbability %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hohe Regenwahrscheinlichkeit an %1$lld Reisetag(en), bis %2$lld %%."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High rain probability on %1$lld travel day(s), up to %2$lld%%."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.thunderstorm %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewitterrisiko an %lld Reisetag(en)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thunderstorm risk on %lld travel day(s)."
+          }
+        }
+      }
+    },
+    "trip.flexible.reason.wind %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starker Wind an %1$lld Reisetag(en), bis %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strong wind on %1$lld travel day(s), up to %2$@."
+          }
+        }
+      }
+    },
+    "trip.flexible.selectedStart" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angezeigter Starttag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displayed start date"
+          }
+        }
+      }
+    },
+    "trip.flexible.similar" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die verfügbaren Starttage unterscheiden sich nur gering."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The available start dates differ only slightly."
+          }
+        }
+      }
+    },
+    "trip.flexible.violationDay %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betroffen: %1$@ in %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affected: %1$@ in %2$@"
+          }
+        }
+      }
+    },
+    "trip.moreOptions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weitere Optionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More options"
           }
         }
       }
@@ -1802,6 +3266,310 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld places"
+          }
+        }
+      }
+    },
+    "trip.preferences.cold" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kälte berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider cold"
+          }
+        }
+      }
+    },
+    "trip.preferences.coldLimit %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bis %@ auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag at %@ or below"
+          }
+        }
+      }
+    },
+    "trip.preferences.explanation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese persönlichen Grenzen dienen nur zum nachvollziehbaren Vergleich. Sie sind keine Sicherheits- oder Unwettergarantie."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "These personal thresholds are only used for an explainable comparison. They are not a safety or severe-weather guarantee."
+          }
+        }
+      }
+    },
+    "trip.preferences.gustLimit %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %@ auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag from %@"
+          }
+        }
+      }
+    },
+    "trip.preferences.gusts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Böen berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider gusts"
+          }
+        }
+      }
+    },
+    "trip.preferences.heat" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitze berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider heat"
+          }
+        }
+      }
+    },
+    "trip.preferences.heatLimit %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %@ auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag from %@"
+          }
+        }
+      }
+    },
+    "trip.preferences.precipitationAmount" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niederschlagsmenge berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider precipitation amount"
+          }
+        }
+      }
+    },
+    "trip.preferences.precipitationLimit %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %@ mm auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag from %@ mm"
+          }
+        }
+      }
+    },
+    "trip.preferences.rain" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rain"
+          }
+        }
+      }
+    },
+    "trip.preferences.rainProbability" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regenwahrscheinlichkeit berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider rain probability"
+          }
+        }
+      }
+    },
+    "trip.preferences.rainProbabilityLimit %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %lld %% auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag from %lld%%"
+          }
+        }
+      }
+    },
+    "trip.preferences.restoreDefaults" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardwerte wiederherstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore defaults"
+          }
+        }
+      }
+    },
+    "trip.preferences.temperature" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatur"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature"
+          }
+        }
+      }
+    },
+    "trip.preferences.thunderstorms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gewitter vermeiden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avoid thunderstorms"
+          }
+        }
+      }
+    },
+    "trip.preferences.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpräferenzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather preferences"
+          }
+        }
+      }
+    },
+    "trip.preferences.wind" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind"
+          }
+        }
+      }
+    },
+    "trip.preferences.windLimit %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ab %@ auffällig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flag from %@"
+          }
+        }
+      }
+    },
+    "trip.preferences.windSpeed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wind berücksichtigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consider wind"
           }
         }
       }
@@ -2488,839 +4256,6 @@
         }
       }
     }
-    ,
-      "common.save": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Speichern"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Save"
-            }
-          }
-        }
-      },
-      "comparison.entry.title": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Orte vergleichen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Compare places"
-            }
-          }
-        }
-      },
-      "comparison.entry.subtitle": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Kostenlos alternative Reiseorte im gleichen Zeitraum vergleichen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Compare alternative destinations for the same dates for free"
-            }
-          }
-        }
-      },
-      "comparison.myComparisons": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Meine Vergleiche"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "My comparisons"
-            }
-          }
-        }
-      },
-      "comparison.placeCount %lld": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%lld Orte"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%lld places"
-            }
-          }
-        }
-      },
-      "comparison.name.optional": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Name (optional)"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Name (optional)"
-            }
-          }
-        }
-      },
-      "comparison.from": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Von"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "From"
-            }
-          }
-        }
-      },
-      "comparison.to": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Bis"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "To"
-            }
-          }
-        }
-      },
-      "comparison.period": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Gemeinsamer Zeitraum"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Shared period"
-            }
-          }
-        }
-      },
-      "comparison.candidates": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Orte"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Places"
-            }
-          }
-        }
-      },
-      "comparison.candidates.help": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Mindestens 2, maximal 6 Orte. Alle Orte werden für exakt denselben Zeitraum verglichen."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "At least 2 and at most 6 places. Every place is compared for exactly the same period."
-            }
-          }
-        }
-      },
-      "comparison.addPlace": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Weiteren Ort hinzufügen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Add another place"
-            }
-          }
-        }
-      },
-      "comparison.new": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Neuer Ortsvergleich"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "New place comparison"
-            }
-          }
-        }
-      },
-      "comparison.edit": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Vergleich bearbeiten"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Edit comparison"
-            }
-          }
-        }
-      },
-      "comparison.place": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Ort"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Place"
-            }
-          }
-        }
-      },
-      "comparison.error.title": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Vergleich noch nicht vollständig"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Comparison is incomplete"
-            }
-          }
-        }
-      },
-      "comparison.error.dateRange": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Das Enddatum darf nicht vor dem Startdatum liegen."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "The end date cannot be before the start date."
-            }
-          }
-        }
-      },
-      "comparison.error.tooFew": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Füge mindestens zwei gültige Orte hinzu."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Add at least two valid places."
-            }
-          }
-        }
-      },
-      "comparison.error.tooMany": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Es können maximal sechs Orte verglichen werden."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Up to six places can be compared."
-            }
-          }
-        }
-      },
-      "comparison.error.emptyPlace": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Jeder Kandidat benötigt einen gültigen Ort."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Every candidate needs a valid place."
-            }
-          }
-        }
-      },
-      "comparison.error.duplicatePlace": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wähle unterschiedliche Orte für den Vergleich."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Choose different places for the comparison."
-            }
-          }
-        }
-      },
-      "comparison.generatedName %@ %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%@ oder %@"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%@ or %@"
-            }
-          }
-        }
-      },
-      "comparison.forecast.available": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Vergleich vollständig verfügbar"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Comparison fully available"
-            }
-          }
-        }
-      },
-      "comparison.forecast.partial": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Vergleich teilweise verfügbar"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Comparison partially available"
-            }
-          }
-        }
-      },
-      "comparison.loading.detail": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wetterdaten für alle Orte werden geprüft."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Checking weather data for all places."
-            }
-          }
-        }
-      },
-      "comparison.sharedDays.updated %lld %lld %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$lld von %2$lld Tagen gemeinsam vergleichbar. Aktualisiert: %3$@."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$lld of %2$lld days comparable. Updated: %3$@."
-            }
-          }
-        }
-      },
-      "comparison.sharedDays.partial %lld %lld %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Erst %1$lld von %2$lld Tagen gemeinsam vergleichbar. Weitere Daten voraussichtlich ab %3$@."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Only %1$lld of %2$lld days are comparable. More data expected from %3$@."
-            }
-          }
-        }
-      },
-      "comparison.tendencies": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Nachvollziehbare Tendenzen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Explainable tendencies"
-            }
-          }
-        }
-      },
-      "comparison.tendencies.insufficient": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Noch keine Rangfolge: Die gemeinsame Datenbasis reicht nicht aus."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "No ranking yet: there is not enough shared data."
-            }
-          }
-        }
-      },
-      "comparison.tendencies.equal": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Auf gemeinsamer Datenbasis ergibt sich keine eindeutige Tendenz."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "There is no clear tendency on the shared data."
-            }
-          }
-        }
-      },
-      "comparison.overview": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Vergleich auf gemeinsamen Tagen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Comparison on shared days"
-            }
-          }
-        }
-      },
-      "comparison.dryDefinition": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Voraussichtlich trocken: Regenwahrscheinlichkeit unter 50 % und Niederschlag unter 1,0 mm. Ein fehlender Wahrscheinlichkeitswert zählt nicht als trocken."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Expected dry: rain probability below 50% and precipitation below 1.0 mm. A missing probability does not count as dry."
-            }
-          }
-        }
-      },
-      "comparison.days": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Tagesvergleich"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Daily comparison"
-            }
-          }
-        }
-      },
-      "comparison.day.comparable": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Alle Orte besitzen eine Vorhersage"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "All places have a forecast"
-            }
-          }
-        }
-      },
-      "comparison.day.incomplete": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Nicht für alle Orte verfügbar"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Not available for every place"
-            }
-          }
-        }
-      },
-      "comparison.day.candidateUnavailable": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Für diesen Ort noch nicht verfügbar"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Not available for this place yet"
-            }
-          }
-        }
-      },
-      "comparison.metric.days": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Gemeinsame Tage"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Shared days"
-            }
-          }
-        }
-      },
-      "comparison.metric.dryDays": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Trockene Tage"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Dry days"
-            }
-          }
-        }
-      },
-      "comparison.metric.rainSum": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Niederschlagssumme"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Total precipitation"
-            }
-          }
-        }
-      },
-      "comparison.metric.rainProbability": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Höchste Regenwahrscheinlichkeit"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Highest rain probability"
-            }
-          }
-        }
-      },
-      "comparison.metric.temperature": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Temperaturbereich"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Temperature range"
-            }
-          }
-        }
-      },
-      "comparison.metric.wind": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wind und Böen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wind and gusts"
-            }
-          }
-        }
-      },
-      "comparison.metric.windAndGust %@ %@ %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wind %@, Böen %@ %@"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wind %@, gusts %@ %@"
-            }
-          }
-        }
-      },
-      "comparison.convertToTrip": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Als Reise übernehmen"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Convert to trip"
-            }
-          }
-        }
-      },
-      "comparison.tendency.dry %@ %lld": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: %2$lld mehr voraussichtlich trockene Tage als der nächstbeste Ort."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: %2$lld more expected dry days than the next-best place."
-            }
-          }
-        }
-      },
-      "comparison.tendency.rain %@ %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: rund %2$@ mm weniger Niederschlag als der nächstbeste Ort."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: about %2$@ mm less precipitation than the next-best place."
-            }
-          }
-        }
-      },
-      "comparison.tendency.wind %@ %@ %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: stärkster Wind rund %2$@ %3$@ niedriger als beim nächstbesten Ort."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "%1$@: maximum wind about %2$@ %3$@ lower than the next-best place."
-            }
-          }
-        }
-      },
-      "comparison.notification.enable": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Bei Vergleichsverfügbarkeit erinnern"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Notify when comparison becomes available"
-            }
-          }
-        }
-      },
-      "comparison.notification.explanation.title": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Erinnerung für den Ortsvergleich"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Reminder for the place comparison"
-            }
-          }
-        }
-      },
-      "comparison.notification.explanation.body": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wetterpilot kann einmal lokal benachrichtigen, wenn der gemeinsame Zeitraum in das 16-Tage-Fenster gelangt. Es gibt keine Zusage für Hintergrundaktualisierungen oder Wetteränderungsmeldungen."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Wetterpilot can send one local notification when the shared period enters the 16-day window. It does not promise background updates or weather-change notifications."
-            }
-          }
-        }
-      },
-      "comparison.notification.title": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Dein Ortsvergleich ist im Vorhersagefenster"
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Your place comparison is in the forecast window"
-            }
-          }
-        }
-      },
-      "comparison.notification.body %@": {
-        "localizations": {
-          "de": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Für „%@“ sollten jetzt Wetterdaten abrufbar sein."
-            }
-          },
-          "en": {
-            "stringUnit": {
-              "state": "translated",
-              "value": "Weather data should now be available for “%@”."
-            }
-          }
-        }
-      }
   },
   "version" : "1.0"
 }

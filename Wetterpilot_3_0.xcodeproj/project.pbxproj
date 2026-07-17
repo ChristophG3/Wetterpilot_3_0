@@ -39,6 +39,9 @@
 		A10000000000000000000020 /* ComparisonEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000020 /* ComparisonEditorView.swift */; };
 		A10000000000000000000021 /* ComparisonOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000021 /* ComparisonOverviewView.swift */; };
 		A10000000000000000000022 /* PhaseTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000022 /* PhaseTwoTests.swift */; };
+		A10000000000000000000023 /* FlexibleTripStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* FlexibleTripStart.swift */; };
+		A10000000000000000000024 /* TravelWeatherPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* TravelWeatherPreferencesView.swift */; };
+		A10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		B10000000000000000000020 /* ComparisonEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonEditorView.swift; sourceTree = "<group>"; };
 		B10000000000000000000021 /* ComparisonOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonOverviewView.swift; sourceTree = "<group>"; };
 		B10000000000000000000022 /* PhaseTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseTwoTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000023 /* FlexibleTripStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleTripStart.swift; sourceTree = "<group>"; };
+		B10000000000000000000024 /* TravelWeatherPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelWeatherPreferencesView.swift; sourceTree = "<group>"; };
+		B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseThreeFlexibleStartTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			children = (
 				B10000000000000000000005 /* BuildTripTimeline.swift */,
 				B1000000000000000000001E /* BuildDestinationComparison.swift */,
+				B10000000000000000000023 /* FlexibleTripStart.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -205,6 +212,7 @@
 			children = (
 				B10000000000000000000008 /* TripOverviewView.swift */,
 				B10000000000000000000014 /* TripWeatherModel.swift */,
+				B10000000000000000000024 /* TravelWeatherPreferencesView.swift */,
 			);
 			path = TripOverview;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 				B10000000000000000000015 /* WeatherServiceTests.swift */,
 				B1000000000000000000001C /* PhaseOneTests.swift */,
 				B10000000000000000000022 /* PhaseTwoTests.swift */,
+				B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */,
 			);
 			path = Wetterpilot_3_0Tests;
 			sourceTree = "<group>";
@@ -435,6 +444,8 @@
 				A1000000000000000000001F /* ComparisonWeatherModel.swift in Sources */,
 				A10000000000000000000020 /* ComparisonEditorView.swift in Sources */,
 				A10000000000000000000021 /* ComparisonOverviewView.swift in Sources */,
+				A10000000000000000000023 /* FlexibleTripStart.swift in Sources */,
+				A10000000000000000000024 /* TravelWeatherPreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +457,7 @@
 				A10000000000000000000015 /* WeatherServiceTests.swift in Sources */,
 				A1000000000000000000001C /* PhaseOneTests.swift in Sources */,
 				A10000000000000000000022 /* PhaseTwoTests.swift in Sources */,
+				A10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

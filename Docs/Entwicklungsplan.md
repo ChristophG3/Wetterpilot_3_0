@@ -478,3 +478,43 @@ wie Reisen. Prognosen außerhalb des Open-Meteo-Fensters bleiben ausdrücklich
 nicht verfügbar. Ein Kandidat kann ohne Modell-Sonderweg in eine normale Reise
 mit einem Aufenthalt für den vollständigen Vergleichszeitraum umgewandelt
 werden.
+
+## 17. Phase 3 – Flexible Starttage normaler Reisen
+
+Flexible Starttage sind eine optionale Eigenschaft einer normalen Reise.
+Neben dem exakten Originalzeitraum kann eine Reise um ±1 oder ±2 Kalendertage
+verschoben dargestellt werden. Persistiert wird nur die gewählte
+Flexibilität; Varianten und verschobene Aufenthalte bleiben vollständig
+abgeleitet. Bestehende Reisen verwenden ohne Nutzereingriff den exakten
+Start.
+
+Die gesamte Reise wird für jede Variante um denselben Offset verschoben.
+Aufenthaltsdauern, Reihenfolge und gemeinsame Transferdaten bleiben erhalten.
+Die Verschiebung verwendet Kalenderoperationen statt fester
+Sekundenintervalle und funktioniert dadurch auch über Monats-, Jahres- und
+Sommerzeitgrenzen.
+
+Die Bewertung berücksichtigt ausschließlich aktivierte globale
+Wetterpräferenzen:
+
+- Gewitter vermeiden
+- Regenwahrscheinlichkeit höchstens 70 Prozent
+- Niederschlagsmenge höchstens 10 mm
+- Wind höchstens 40 km/h
+- Böen höchstens 60 km/h
+- Mindesttemperatur 5 °C
+- Höchsttemperatur 32 °C
+
+Diese Standardwerte können in der Reiseübersicht geändert oder
+zurückgesetzt werden. Intern vergleicht die App zuerst die Anzahl der
+Grenzwertverletzungen, danach die Anzahl betroffener Reisetage und zuletzt
+die relative Überschreitung. In der Oberfläche wird keine Punktzahl gezeigt,
+sondern eine konkrete Begründung mit Datum, Ort und Wetterwert.
+
+Eine endgültige Empfehlung ist nur möglich, wenn sämtliche Varianten für
+alle Reisetage vollständig und mit denselben aktivierten Datenarten
+bewertbar sind. Bei fehlender fairer Datenbasis oder praktisch gleichen
+Ergebnissen bleibt die Originalvariante vorausgewählt und die App formuliert
+keinen künstlichen Gewinner. Wetter wird weiterhin einmal pro eindeutigem
+Ort geladen; alle Startvarianten werden lokal aus Cache und Vorhersagetagen
+gebildet.

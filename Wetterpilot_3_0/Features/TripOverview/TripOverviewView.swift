@@ -7,12 +7,26 @@ struct TripOverviewView: View {
     @AppStorage("windSpeedUnit") private var windUnitRaw = WindSpeedUnit.kilometersPerHour.rawValue
     let trip: Trip
     @StateObject private var weatherModel = TripWeatherModel()
+    @StateObject private var preferencesModel = TravelWeatherPreferencesModel()
     @State private var showsEditor = false
     @State private var showsNotificationExplanation = false
+    @State private var showsWeatherPreferences = false
+    @State private var selectedOffset = 0
 
     private var temperatureUnit: TemperatureUnit { TemperatureUnit(rawValue: temperatureUnitRaw) ?? .celsius }
     private var windUnit: WindSpeedUnit { WindSpeedUnit(rawValue: windUnitRaw) ?? .kilometersPerHour }
+    private var flexibleComparison: FlexibleTripStartComparison {
+        weatherModel.flexibleComparison(trip: trip, preferences: preferencesModel.value)
+    }
+    private var selectedCandidate: TripStartCandidate? {
+        flexibleComparison.candidate(offset: selectedOffset)
+            ?? flexibleComparison.candidate(offset: flexibleComparison.preferredDisplayOffset)
+            ?? flexibleComparison.candidates.first
+    }
     private var timeline: [TripDay] {
+        if trip.startFlexibility != .exact, let selectedCandidate {
+            return selectedCandidate.shiftedTimeline
+        }
         let segments = trip.sortedSegments.map {
             TimelineSegment(id: $0.id, placeName: $0.placeName, startDate: $0.startDate, endDate: $0.endDate)
         }
@@ -22,6 +36,9 @@ struct TripOverviewView: View {
     var body: some View {
         List {
             weatherStatus
+            if trip.startFlexibility != .exact {
+                flexibleStartSection
+            }
             notificationSection
 
             Section(String(localized: "trip.timeline")) {
@@ -54,14 +71,36 @@ struct TripOverviewView: View {
                 } label: { Image(systemName: "arrow.clockwise") }
                 .disabled(weatherModel.isLoading)
                 .accessibilityLabel(String(localized: "weather.refresh"))
-                Button(String(localized: "common.edit")) { showsEditor = true }
+                Menu {
+                    Button {
+                        showsEditor = true
+                    } label: {
+                        Label(String(localized: "common.edit"), systemImage: "pencil")
+                    }
+                    Button {
+                        showsWeatherPreferences = true
+                    } label: {
+                        Label(String(localized: "trip.preferences.title"), systemImage: "slider.horizontal.3")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .frame(minWidth: 44, minHeight: 44)
+                }
+                .accessibilityLabel(String(localized: "trip.moreOptions"))
             }
         }
         .sheet(isPresented: $showsEditor) { TripEditorView(trip: trip) }
+        .sheet(isPresented: $showsWeatherPreferences) {
+            TravelWeatherPreferencesView(model: preferencesModel)
+        }
         .sheet(isPresented: $showsNotificationExplanation) { notificationExplanation }
         .task(id: trip.updatedAt) {
             await weatherModel.load(trip: trip, modelContext: modelContext)
+            selectPreferredCandidate()
             if trip.forecastNotificationEnabled { await rescheduleNotification() }
+        }
+        .onReceive(preferencesModel.$value.dropFirst()) { _ in
+            selectPreferredCandidate()
         }
     }
 
@@ -147,7 +186,12 @@ struct TripOverviewView: View {
             VStack(alignment: .leading, spacing: 18) {
                 Image(systemName: "bell.badge").font(.system(size: 44)).foregroundStyle(AppTheme.accent)
                 Text(String(localized: "notification.explanation.title")).font(.title2.bold())
-                Text(String(localized: "notification.explanation.body")).foregroundStyle(AppTheme.secondaryText)
+                Text(
+                    trip.startFlexibility == .exact
+                        ? String(localized: "notification.explanation.body")
+                        : String(localized: "notification.flexible.explanation.body")
+                )
+                .foregroundStyle(AppTheme.secondaryText)
                 Button(String(localized: "notification.allow")) {
                     Task {
                         let manager = ForecastNotificationManager()
@@ -170,10 +214,158 @@ struct TripOverviewView: View {
     }
 
     private func rescheduleNotification() async {
-        guard let start = trip.startDate else { return }
-        try? await ForecastNotificationManager().schedule(
-            tripID: trip.id, tripName: trip.name, firstTravelDate: start, calendar: .autoupdatingCurrent
-        )
+        guard let start = trip.startDate, let end = trip.endDate else { return }
+        let manager = ForecastNotificationManager()
+        if trip.startFlexibility == .exact {
+            try? await manager.schedule(
+                tripID: trip.id, tripName: trip.name,
+                firstTravelDate: start, calendar: .autoupdatingCurrent
+            )
+        } else {
+            try? await manager.scheduleFlexibleTrip(
+                tripID: trip.id, tripName: trip.name,
+                originalEndDate: end, flexibility: trip.startFlexibility,
+                calendar: .autoupdatingCurrent
+            )
+        }
+    }
+
+    private var flexibleStartSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "trip.flexible.header"), systemImage: "calendar.badge.plus")
+                    .font(.headline)
+
+                Picker(String(localized: "trip.flexible.selectedStart"), selection: $selectedOffset) {
+                    ForEach(flexibleComparison.candidates) { candidate in
+                        Text(candidateLabel(candidate)).tag(candidate.offset)
+                    }
+                }
+                .pickerStyle(.menu)
+                .frame(minHeight: 44)
+                .accessibilityHint(String(localized: "trip.flexible.pickerHint"))
+
+                if let candidate = selectedCandidate {
+                    Label(
+                        assessmentText(candidate),
+                        systemImage: assessmentLevel(candidate).symbolName
+                    )
+                    .font(.subheadline.weight(.semibold))
+
+                    Text(forecastText(candidate))
+                        .font(.caption)
+                        .foregroundStyle(AppTheme.secondaryText)
+
+                    Text(summaryText(candidate))
+                        .font(.subheadline)
+
+                    if let violation = candidate.assessment.violations.first {
+                        Text(violationDetail(violation))
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.secondaryText)
+                    }
+                }
+
+                if flexibleComparison.differencesAreSmall {
+                    Label(String(localized: "trip.flexible.similar"), systemImage: "equal.circle")
+                        .font(.caption)
+                } else if !flexibleComparison.hasFairCommonBasis {
+                    Label(String(localized: "trip.flexible.noFairRecommendation"), systemImage: "info.circle")
+                        .font(.caption)
+                }
+            }
+            .padding(.vertical, 4)
+            .accessibilityElement(children: .contain)
+        } header: {
+            Text(String(localized: "trip.flexibility.title"))
+        }
+        .themedListRow()
+    }
+
+    private func selectPreferredCandidate() {
+        guard trip.startFlexibility != .exact else {
+            selectedOffset = 0
+            return
+        }
+        selectedOffset = flexibleComparison.preferredDisplayOffset
+    }
+
+    private func assessmentLevel(_ candidate: TripStartCandidate) -> TripStartAssessmentLevel {
+        if flexibleComparison.recommendedOffset == candidate.offset { return .recommended }
+        return candidate.assessment.level
+    }
+
+    private func assessmentText(_ candidate: TripStartCandidate) -> String {
+        String(localized: String.LocalizationValue(assessmentLevel(candidate).localizationKey))
+    }
+
+    private func candidateLabel(_ candidate: TripStartCandidate) -> String {
+        let relation: String
+        if candidate.offset == 0 {
+            relation = String(localized: "trip.flexible.original")
+        } else if candidate.offset < 0 {
+            relation = String(localized: "trip.flexible.earlier \(abs(candidate.offset))")
+        } else {
+            relation = String(localized: "trip.flexible.later \(candidate.offset)")
+        }
+        return String(localized: "trip.flexible.candidateLabel \(candidate.startDate.formatted(date: .long, time: .omitted)) \(relation)")
+    }
+
+    private func forecastText(_ candidate: TripStartCandidate) -> String {
+        switch candidate.forecastState {
+        case .complete:
+            return weatherModel.usesStaleData
+                ? String(localized: "forecast.stale")
+                : String(localized: "trip.flexible.forecastComplete")
+        case .partial(let available, let total, let expected):
+            if let expected {
+                return String(localized: "trip.flexible.forecastPartialExpected \(available) \(total) \(expected.formatted(date: .long, time: .omitted))")
+            }
+            return String(localized: "trip.flexible.forecastPartial \(available) \(total)")
+        case .unavailable(let expected):
+            if let expected {
+                return String(localized: "trip.flexible.forecastUnavailableExpected \(expected.formatted(date: .long, time: .omitted))")
+            }
+            return String(localized: "forecast.notYetAvailable")
+        }
+    }
+
+    private func summaryText(_ candidate: TripStartCandidate) -> String {
+        guard let reason = candidate.assessment.reasons.first else {
+            return String(localized: "trip.flexible.noFairRecommendation")
+        }
+        switch reason {
+        case .noThresholdExceeded:
+            return String(localized: "trip.flexible.reason.none")
+        case .thunderstorm(let days):
+            return String(localized: "trip.flexible.reason.thunderstorm \(days)")
+        case .rainProbability(let days, let maximum):
+            return String(localized: "trip.flexible.reason.rainProbability \(days) \(maximum)")
+        case .precipitation(let days, let maximum):
+            return String(localized: "trip.flexible.reason.precipitation \(days) \(maximum.formatted(.number.precision(.fractionLength(1))))")
+        case .wind(let days, let maximum):
+            return String(localized: "trip.flexible.reason.wind \(days) \(windText(maximum))")
+        case .gust(let days, let maximum):
+            return String(localized: "trip.flexible.reason.gust \(days) \(windText(maximum))")
+        case .cold(let days, let minimum):
+            return String(localized: "trip.flexible.reason.cold \(days) \(temperatureText(minimum))")
+        case .heat(let days, let maximum):
+            return String(localized: "trip.flexible.reason.heat \(days) \(temperatureText(maximum))")
+        case .incomplete(let available, let total):
+            return String(localized: "trip.flexible.reason.incomplete \(available) \(total)")
+        }
+    }
+
+    private func violationDetail(_ violation: TripWeatherViolation) -> String {
+        String(localized: "trip.flexible.violationDay \(violation.date.formatted(date: .long, time: .omitted)) \(violation.placeName)")
+    }
+
+    private func temperatureText(_ celsius: Double) -> String {
+        "\(temperatureUnit.value(fromCelsius: celsius).formatted(.number.precision(.fractionLength(0)))) \(temperatureUnit.symbol)"
+    }
+
+    private func windText(_ kilometersPerHour: Double) -> String {
+        "\(windUnit.value(fromKilometersPerHour: kilometersPerHour).formatted(.number.precision(.fractionLength(0)))) \(windUnit.symbol)"
     }
 }
 
@@ -223,7 +415,14 @@ private struct TripDayRow: View {
 
     private var accessibilityText: String {
         if let weather {
-            return "\(day.date.formatted(date: .long, time: .omitted)), \(day.placeName), \(temperatureUnit.value(fromCelsius: weather.minimumTemperature).formatted(.number.precision(.fractionLength(0)))) bis \(temperatureUnit.value(fromCelsius: weather.maximumTemperature).formatted(.number.precision(.fractionLength(0)))) \(temperatureUnit.symbol), \(weather.precipitationProbability ?? 0) Prozent"
+            let date = day.date.formatted(date: .long, time: .omitted)
+            let minimum = temperatureUnit.value(fromCelsius: weather.minimumTemperature)
+                .formatted(.number.precision(.fractionLength(0)))
+            let maximum = temperatureUnit.value(fromCelsius: weather.maximumTemperature)
+                .formatted(.number.precision(.fractionLength(0)))
+            return String(
+                localized: "trip.day.accessibility.weather \(date) \(day.placeName) \(minimum) \(maximum) \(temperatureUnit.symbol) \(weather.precipitationProbability ?? 0)"
+            )
         }
         return "\(day.date.formatted(date: .long, time: .omitted)), \(day.placeName), \(unavailableMessage)"
     }

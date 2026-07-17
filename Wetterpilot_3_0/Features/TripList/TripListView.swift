@@ -148,6 +148,14 @@ private struct TripRow: View {
                 systemImage: "mappin.and.ellipse"
             )
                 .font(.caption).foregroundStyle(AppTheme.secondaryText)
+            if trip.startFlexibility != .exact {
+                Label(
+                    String(localized: String.LocalizationValue(trip.startFlexibility.localizationKey)),
+                    systemImage: "calendar.badge.plus"
+                )
+                .font(.caption)
+                .foregroundStyle(AppTheme.secondaryText)
+            }
         }
         .padding(.vertical, 7).accessibilityElement(children: .combine)
     }

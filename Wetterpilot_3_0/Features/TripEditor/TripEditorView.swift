@@ -71,12 +71,14 @@ struct TripEditorView: View {
     private let trip: Trip?
     @State private var name: String
     @State private var drafts: [SegmentDraft]
+    @State private var flexibility: TripStartFlexibility
     @State private var errorMessage: String?
     @StateObject private var autocomplete = PlaceAutocompleteModel()
 
     init(trip: Trip? = nil) {
         self.trip = trip
         _name = State(initialValue: trip?.name ?? "")
+        _flexibility = State(initialValue: trip?.startFlexibility ?? .exact)
 
         if let trip, !trip.sortedSegments.isEmpty {
             _drafts = State(
@@ -115,6 +117,24 @@ struct TripEditorView: View {
                 Section("Reise") {
                     TextField("Name der Reise", text: $name)
                         .textInputAutocapitalization(.words)
+                }
+                .themedListRow()
+
+                Section {
+                    Picker(String(localized: "trip.flexibility.title"), selection: $flexibility) {
+                        ForEach(TripStartFlexibility.allCases) { value in
+                            Text(String(localized: String.LocalizationValue(value.localizationKey)))
+                                .tag(value)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .accessibilityLabel(String(localized: "trip.flexibility.title"))
+
+                    Text(String(localized: "trip.flexibility.editorExplanation"))
+                        .font(.caption)
+                        .foregroundStyle(AppTheme.secondaryText)
+                } header: {
+                    Text(String(localized: "trip.flexibility.title"))
                 }
                 .themedListRow()
 
@@ -215,6 +235,7 @@ struct TripEditorView: View {
         }
 
         storedTrip.updatedAt = .now
+        storedTrip.startFlexibility = flexibility
         // Keep the user's order for multiple locations on the same day.
         for draft in drafts {
             let segment = TripSegment(
@@ -235,14 +256,27 @@ struct TripEditorView: View {
 
         do {
             try modelContext.save()
-            if storedTrip.forecastNotificationEnabled, let start = storedTrip.startDate {
+            if storedTrip.forecastNotificationEnabled,
+               let start = storedTrip.startDate,
+               let end = storedTrip.endDate {
                 Task {
-                    try? await ForecastNotificationManager().schedule(
-                        tripID: storedTrip.id,
-                        tripName: storedTrip.name,
-                        firstTravelDate: start,
-                        calendar: .autoupdatingCurrent
-                    )
+                    let manager = ForecastNotificationManager()
+                    if storedTrip.startFlexibility == .exact {
+                        try? await manager.schedule(
+                            tripID: storedTrip.id,
+                            tripName: storedTrip.name,
+                            firstTravelDate: start,
+                            calendar: .autoupdatingCurrent
+                        )
+                    } else {
+                        try? await manager.scheduleFlexibleTrip(
+                            tripID: storedTrip.id,
+                            tripName: storedTrip.name,
+                            originalEndDate: end,
+                            flexibility: storedTrip.startFlexibility,
+                            calendar: .autoupdatingCurrent
+                        )
+                    }
                 }
             }
             dismiss()

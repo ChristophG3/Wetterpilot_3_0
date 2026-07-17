@@ -19,6 +19,9 @@ Wetterpilot 3.0 ist ein iPhone-Wetterbegleiter für Rundreisen mit mehreren fest
 - Vergleichswerte ausschließlich aus den gemeinsam verfügbaren Prognosetagen bilden
 - erklärbare Tendenzen zu trockenen Tagen, Niederschlag und Wind ohne Gesamtscore
 - einen Vergleichsort direkt als normale Reise übernehmen
+- normale Reisen optional mit exaktem Start, ±1 Tag oder ±2 Tagen planen
+- fair bewertbare Startvarianten anhand persönlicher Wettergrenzen vergleichen
+- globale Wetterpräferenzen für Gewitter, Regen, Wind, Böen, Kälte und Hitze
 
 Tage außerhalb des 16-Tage-Vorhersagefensters zeigen bewusst keine erfundenen oder historischen Werte. Der vollständige Produktplan liegt unter `Docs/Entwicklungsplan.md`.
 
@@ -26,6 +29,11 @@ Ein Tag gilt im Ortsvergleich als **voraussichtlich trocken**, wenn die
 prognostizierte Regenwahrscheinlichkeit unter 50 Prozent liegt und zugleich
 weniger als 1,0 mm Niederschlag vorhergesagt werden. Fehlt die
 Regenwahrscheinlichkeit, wird der Tag nicht als trocken gezählt.
+
+Flexible Starttage sind kein eigener Reisetyp: Die gespeicherten Aufenthalte
+bleiben unverändert, während die App daraus kalenderbewusst verschobene
+Ansichten ableitet. Eine Empfehlung erscheint nur, wenn alle Varianten auf
+derselben vollständigen Prognosebasis beurteilt werden können.
 
 ## Projekt öffnen
 
