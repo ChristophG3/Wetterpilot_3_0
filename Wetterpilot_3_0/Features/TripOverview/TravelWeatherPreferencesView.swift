@@ -5,6 +5,7 @@ struct TravelWeatherPreferencesView: View {
     @ObservedObject var model: TravelWeatherPreferencesModel
     @AppStorage("temperatureUnit") private var temperatureUnitRaw = TemperatureUnit.celsius.rawValue
     @AppStorage("windSpeedUnit") private var windUnitRaw = WindSpeedUnit.kilometersPerHour.rawValue
+    @State private var showsResetConfirmation = false
 
     private var temperatureUnit: TemperatureUnit {
         TemperatureUnit(rawValue: temperatureUnitRaw) ?? .celsius
@@ -118,7 +119,11 @@ struct TravelWeatherPreferencesView: View {
 
                 Section {
                     Button(String(localized: "trip.preferences.restoreDefaults")) {
-                        model.restoreDefaults()
+                        if model.value == .standard {
+                            model.restoreDefaults()
+                        } else {
+                            showsResetConfirmation = true
+                        }
                     }
                     .frame(minHeight: 44)
                 }
@@ -131,6 +136,21 @@ struct TravelWeatherPreferencesView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(String(localized: "common.done")) { dismiss() }
                 }
+            }
+            .confirmationDialog(
+                String(localized: "trip.preferences.resetConfirmation.title"),
+                isPresented: $showsResetConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button(
+                    String(localized: "trip.preferences.restoreDefaults"),
+                    role: .destructive
+                ) {
+                    model.restoreDefaults()
+                }
+                Button(String(localized: "common.cancel"), role: .cancel) {}
+            } message: {
+                Text(String(localized: "trip.preferences.resetConfirmation.message"))
             }
         }
     }

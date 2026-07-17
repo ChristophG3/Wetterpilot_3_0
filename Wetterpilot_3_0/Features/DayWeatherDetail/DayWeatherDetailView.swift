@@ -79,15 +79,33 @@ struct DayWeatherDetailView: View {
             if weather.hours.isEmpty {
                 Text(String(localized: "hourly.unavailable")).font(.caption).foregroundStyle(AppTheme.secondaryText)
             } else {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 10) {
-                        ForEach(weather.hours) { hour in HourCard(hour: hour, temperatureUnit: temperatureUnit, windUnit: windUnit) }
+                ScrollViewReader { proxy in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack(spacing: 10) {
+                            ForEach(weather.hours) { hour in
+                                HourCard(
+                                    hour: hour,
+                                    temperatureUnit: temperatureUnit,
+                                    windUnit: windUnit
+                                )
+                                .id(hour.id)
+                            }
+                        }
+                    }
+                    .task(id: hourlyTargetID(weather.hours)) {
+                        guard let target = hourlyTargetID(weather.hours) else { return }
+                        await Task.yield()
+                        proxy.scrollTo(target, anchor: .leading)
                     }
                 }
                 .accessibilityLabel(String(localized: "hourly.accessibility.label"))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading).surfaceCard()
+    }
+
+    private func hourlyTargetID(_ hours: [WeatherHour]) -> String? {
+        HourlyScrollTarget.targetID(for: day.date, hours: hours)
     }
 
     private func metrics(_ weather: WeatherDay) -> some View {

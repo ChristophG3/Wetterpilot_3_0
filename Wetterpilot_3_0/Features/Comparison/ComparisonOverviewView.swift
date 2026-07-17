@@ -10,6 +10,7 @@ struct ComparisonOverviewView: View {
     @State private var showsEditor = false
     @State private var showsNotificationExplanation = false
     @State private var tripToOpen: Trip?
+    @State private var selectedCandidateID: UUID?
 
     private var temperatureUnit: TemperatureUnit { TemperatureUnit(rawValue: temperatureUnitRaw) ?? .celsius }
     private var windUnit: WindSpeedUnit { WindSpeedUnit(rawValue: windUnitRaw) ?? .kilometersPerHour }
@@ -130,12 +131,30 @@ struct ComparisonOverviewView: View {
 
     @ViewBuilder private var candidateSection: some View {
         if let result = weatherModel.result {
+            let selectedID = result.metrics.contains {
+                $0.candidateID == selectedCandidateID
+            } ? selectedCandidateID : result.metrics.first?.candidateID
             Section {
                 ForEach(result.metrics) { metrics in
                     ComparisonMetricsCard(
-                        metrics: metrics, temperatureUnit: temperatureUnit, windUnit: windUnit,
-                        onConvert: { convertToTrip(candidateID: metrics.candidateID) }
+                        metrics: metrics,
+                        temperatureUnit: temperatureUnit,
+                        windUnit: windUnit,
+                        isSelected: selectedID == metrics.candidateID,
+                        onSelect: { selectedCandidateID = metrics.candidateID }
                     )
+                }
+                if let selectedID {
+                    Button {
+                        convertToTrip(candidateID: selectedID)
+                    } label: {
+                        Label(
+                            String(localized: "comparison.convertToTrip"),
+                            systemImage: "arrow.right.circle"
+                        )
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.bordered)
                 }
             } header: { Text(String(localized: "comparison.overview")) }
               footer: { Text(String(localized: "comparison.dryDefinition")) }
@@ -262,33 +281,45 @@ private struct ComparisonMetricsCard: View {
     let metrics: ComparisonCandidateMetrics
     let temperatureUnit: TemperatureUnit
     let windUnit: WindSpeedUnit
-    let onConvert: () -> Void
+    let isSelected: Bool
+    let onSelect: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(metrics.placeName).font(.headline)
-            metric(String(localized: "comparison.metric.days"), "\(metrics.comparedDayCount)", "calendar")
-            metric(String(localized: "comparison.metric.dryDays"), "\(metrics.dryDayCount)", "sun.max")
-            metric(String(localized: "comparison.metric.rainSum"), "\(metrics.precipitationSum.formatted(.number.precision(.fractionLength(1)))) mm", "drop.fill")
-            metric(String(localized: "comparison.metric.rainProbability"), metrics.maximumPrecipitationProbability.map { "\($0)%" } ?? "–", "percent")
-            metric(String(localized: "comparison.metric.temperature"), temperatureText, "thermometer.medium")
-            metric(String(localized: "comparison.metric.wind"), windText, "wind")
-            if !metrics.advisories.isEmpty {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(String(localized: "weather.advisories.title")).font(.caption.weight(.semibold))
-                    ForEach(metrics.advisories, id: \.self) { kind in
-                        Label(String(localized: String.LocalizationValue(kind.localizationKey)), systemImage: kind.symbolName)
-                            .font(.caption).accessibilityElement(children: .combine)
+        Button(action: onSelect) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text(metrics.placeName).font(.headline)
+                    Spacer()
+                    Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                        .foregroundStyle(
+                            isSelected ? AppTheme.accent : AppTheme.secondaryText
+                        )
+                        .accessibilityHidden(true)
+                }
+                metric(String(localized: "comparison.metric.days"), "\(metrics.comparedDayCount)", "calendar")
+                metric(String(localized: "comparison.metric.dryDays"), "\(metrics.dryDayCount)", "sun.max")
+                metric(String(localized: "comparison.metric.rainSum"), "\(metrics.precipitationSum.formatted(.number.precision(.fractionLength(1)))) mm", "drop.fill")
+                metric(String(localized: "comparison.metric.rainProbability"), metrics.maximumPrecipitationProbability.map { "\($0)%" } ?? "–", "percent")
+                metric(String(localized: "comparison.metric.temperature"), temperatureText, "thermometer.medium")
+                metric(String(localized: "comparison.metric.wind"), windText, "wind")
+                if !metrics.advisories.isEmpty {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(String(localized: "weather.advisories.title")).font(.caption.weight(.semibold))
+                        ForEach(metrics.advisories, id: \.self) { kind in
+                            Label(String(localized: String.LocalizationValue(kind.localizationKey)), systemImage: kind.symbolName)
+                                .font(.caption).accessibilityElement(children: .combine)
+                        }
                     }
                 }
             }
-            Button(action: onConvert) {
-                Label(String(localized: "comparison.convertToTrip"), systemImage: "arrow.right.circle.fill")
-                    .frame(maxWidth: .infinity, minHeight: 44)
-            }
-            .buttonStyle(.bordered)
+            .padding(.vertical, 6)
+            .contentShape(Rectangle())
         }
-        .padding(.vertical, 6).accessibilityElement(children: .contain)
+        .buttonStyle(.plain)
+        .frame(minHeight: 44)
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityHint(String(localized: "comparison.selectForTrip"))
     }
 
     private func metric(_ title: String, _ value: String, _ icon: String) -> some View {

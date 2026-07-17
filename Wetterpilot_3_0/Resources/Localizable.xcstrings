@@ -394,6 +394,7 @@
       }
     },
     "comparison.entry.subtitle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -901,6 +902,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld places"
+          }
+        }
+      }
+    },
+    "comparison.selectForTrip" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählt diesen Ort für die Übernahme als Reise aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selects this place to convert it to a trip."
           }
         }
       }
@@ -2269,6 +2286,7 @@
       }
     },
     "quickTrip.list.subtitle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2590,6 +2608,166 @@
         }
       }
     },
+    "trip.card.weather.availableFrom %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorhersage ab %1$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forecast from %1$@"
+          }
+        }
+      }
+    },
+    "trip.card.weather.complete" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorhersage vollständig verfügbar"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full forecast available"
+          }
+        }
+      }
+    },
+    "trip.card.weather.dry" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überwiegend trocken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostly dry"
+          }
+        }
+      }
+    },
+    "trip.card.weather.mixed %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchwachsen · %lld auffällige Reisetage"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed · %lld notable travel days"
+          }
+        }
+      }
+    },
+    "trip.card.weather.mixedOne" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchwachsen · 1 auffälliger Reisetag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mixed · 1 notable travel day"
+          }
+        }
+      }
+    },
+    "trip.card.weather.none" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine aktuellen Wetterdaten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No current weather data"
+          }
+        }
+      }
+    },
+    "trip.card.weather.partial %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilweise verfügbar · %1$lld von %2$lld Reisetagen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partly available · %1$lld of %2$lld travel days"
+          }
+        }
+      }
+    },
+    "trip.card.weather.rain %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regen an %lld Reisetagen möglich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rain possible on %lld travel days"
+          }
+        }
+      }
+    },
+    "trip.card.weather.recommendedStart %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empfohlener Start: %1$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommended start: %1$@"
+          }
+        }
+      }
+    },
+    "trip.card.weather.stale" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veraltete Wetterdaten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outdated weather data"
+          }
+        }
+      }
+    },
     "trip.day %lld" : {
       "localizations" : {
         "de" : {
@@ -2627,13 +2805,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plane deine erste Rundreise und sieh später das Wetter für jeden Ort auf einen Blick."
+            "value" : "Plane eine Reise und sieh das Wetter für jeden Ort und Reisetag."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plan your first trip and see the weather for every place at a glance."
+            "value" : "Plan a trip and see the weather for every place and travel day."
           }
         }
       }
@@ -3458,6 +3636,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Flag from %lld%%"
+          }
+        }
+      }
+    },
+    "trip.preferences.resetConfirmation.message" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine individuell angepassten Grenzwerte gehen dabei verloren."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your customized thresholds will be lost."
+          }
+        }
+      }
+    },
+    "trip.preferences.resetConfirmation.title" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardwerte wiederherstellen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore default values?"
           }
         }
       }

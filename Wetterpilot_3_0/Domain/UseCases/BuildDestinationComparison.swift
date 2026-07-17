@@ -90,6 +90,12 @@ enum DestinationComparisonEngine {
     static let dryProbabilityThreshold = 50
     static let dryPrecipitationThreshold = 1.0
 
+    static func isExpectedDry(_ weather: WeatherDay) -> Bool {
+        guard let probability = weather.precipitationProbability else { return false }
+        return probability < dryProbabilityThreshold
+            && weather.precipitationAmount < dryPrecipitationThreshold
+    }
+
     static func requestedDateKeys(
         from startDate: Date,
         through endDate: Date,
@@ -185,10 +191,7 @@ enum DestinationComparisonEngine {
         sharedDateKeys: [String]
     ) -> ComparisonCandidateMetrics {
         let days = sharedDateKeys.compactMap { candidate.weatherByDate[$0] }
-        let dryDays = days.filter {
-            guard let probability = $0.precipitationProbability else { return false }
-            return probability < dryProbabilityThreshold && $0.precipitationAmount < dryPrecipitationThreshold
-        }.count
+        let dryDays = days.filter(isExpectedDry).count
         let advisories = Set(days.flatMap { WeatherAdvisoryEvaluator.advisories(for: $0).map(\.kind) })
         return ComparisonCandidateMetrics(
             candidateID: candidate.candidateID,

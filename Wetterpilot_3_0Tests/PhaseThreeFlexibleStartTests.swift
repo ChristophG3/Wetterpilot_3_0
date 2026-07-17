@@ -372,6 +372,145 @@ final class PhaseThreeFlexibleStartTests: XCTestCase {
         XCTAssertEqual(flexible, date(2026, 8, 21, hour: 9))
     }
 
+    func testTripCardSummaryUsesCachedWeatherWithoutInventingValues() {
+        let segmentID = UUID()
+        let segment = TripCardSegmentSnapshot(
+            id: segmentID,
+            placeName: "Salzburg",
+            startDate: date(2026, 8, 1),
+            endDate: date(2026, 8, 1),
+            latitude: 47.8,
+            longitude: 13.0
+        )
+        let summary = TripCardWeatherSummaryEngine.evaluate(
+            segments: [segment],
+            flexibility: .exact,
+            weatherByDay: [
+                WeatherDayKey(segmentID: segmentID, dateISO: "2026-08-01"):
+                    weather(dateISO: "2026-08-01")
+            ],
+            fetchedAt: [date(2026, 7, 31)],
+            preferences: .standard,
+            now: date(2026, 7, 31),
+            calendar: utc
+        )
+        XCTAssertEqual(summary?.forecast, .predominantlyDry)
+        XCTAssertEqual(summary?.isStale, false)
+        XCTAssertNil(summary?.recommendedStartDate)
+    }
+
+    func testTripCardSummaryReportsPartialAvailability() {
+        let segmentID = UUID()
+        let segment = TripCardSegmentSnapshot(
+            id: segmentID,
+            placeName: "Salzburg",
+            startDate: date(2026, 8, 1),
+            endDate: date(2026, 8, 2),
+            latitude: 47.8,
+            longitude: 13.0
+        )
+        let summary = TripCardWeatherSummaryEngine.evaluate(
+            segments: [segment],
+            flexibility: .exact,
+            weatherByDay: [
+                WeatherDayKey(segmentID: segmentID, dateISO: "2026-08-01"):
+                    weather(dateISO: "2026-08-01")
+            ],
+            fetchedAt: [date(2026, 7, 31)],
+            preferences: .standard,
+            now: date(2026, 7, 31),
+            calendar: utc
+        )
+        XCTAssertEqual(summary?.forecast, .partial(availableDays: 1, totalDays: 2))
+    }
+
+    func testTripCardSummaryMarksExpiredCacheAsStale() {
+        let segmentID = UUID()
+        let segment = TripCardSegmentSnapshot(
+            id: segmentID,
+            placeName: "Salzburg",
+            startDate: date(2026, 8, 1),
+            endDate: date(2026, 8, 1),
+            latitude: 47.8,
+            longitude: 13.0
+        )
+        let now = date(2026, 7, 31, hour: 12)
+        let summary = TripCardWeatherSummaryEngine.evaluate(
+            segments: [segment],
+            flexibility: .exact,
+            weatherByDay: [
+                WeatherDayKey(segmentID: segmentID, dateISO: "2026-08-01"):
+                    weather(dateISO: "2026-08-01")
+            ],
+            fetchedAt: [now.addingTimeInterval(-(WeatherCachePolicy.freshnessInterval + 1))],
+            preferences: .standard,
+            now: now,
+            calendar: utc
+        )
+        XCTAssertEqual(summary?.isStale, true)
+    }
+
+    func testPastTripHasNoCurrentWeatherSummary() {
+        let segment = TripCardSegmentSnapshot(
+            id: UUID(),
+            placeName: "Salzburg",
+            startDate: date(2026, 7, 1),
+            endDate: date(2026, 7, 2),
+            latitude: 47.8,
+            longitude: 13.0
+        )
+        XCTAssertNil(TripCardWeatherSummaryEngine.evaluate(
+            segments: [segment],
+            flexibility: .exact,
+            weatherByDay: [:],
+            fetchedAt: [],
+            preferences: .standard,
+            now: date(2026, 7, 3),
+            calendar: utc
+        ))
+    }
+
+    func testHourlyScrollTargetUsesNextFullHourForToday() {
+        let hours = (0..<24).map(hour)
+        XCTAssertEqual(
+            HourlyScrollTarget.targetID(
+                for: date(2026, 7, 17),
+                hours: hours,
+                now: date(2026, 7, 17, hour: 14).addingTimeInterval(20 * 60),
+                calendar: utc
+            ),
+            "2026-07-17T15:00"
+        )
+    }
+
+    func testHourlyScrollTargetUsesMorningForFutureDay() {
+        let hours = (0..<24).map(hour)
+        XCTAssertEqual(
+            HourlyScrollTarget.targetID(
+                for: date(2026, 7, 18),
+                hours: hours,
+                now: date(2026, 7, 17, hour: 14),
+                calendar: utc
+            ),
+            "2026-07-17T08:00"
+        )
+    }
+
+    @MainActor
+    func testWeatherPreferenceResetRestoresStandardValues() {
+        let suite = "PhaseThreeFlexibleStartTests.Reset.\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suite)!
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let model = TravelWeatherPreferencesModel(defaults: defaults)
+        model.value.maximumWindSpeed = 12
+        model.value.considersRainProbability = false
+
+        model.restoreDefaults()
+
+        XCTAssertEqual(model.value, .standard)
+        XCTAssertEqual(TravelWeatherPreferencesStore.load(defaults: defaults), .standard)
+    }
+
     private func drafts(_ flexibility: TripStartFlexibility) throws -> [TripStartCandidateDraft] {
         try BuildFlexibleTripCandidates(calendar: utc)(
             segments: segments(), flexibility: flexibility
@@ -450,6 +589,19 @@ final class PhaseThreeFlexibleStartTests: XCTestCase {
         FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
             .appendingPathComponent("cache.json")
+    }
+
+    private func hour(_ hour: Int) -> WeatherHour {
+        WeatherHour(
+            timeISO: String(format: "2026-07-17T%02d:00", hour),
+            temperature: 20,
+            apparentTemperature: 20,
+            precipitationProbability: 10,
+            precipitationAmount: 0,
+            weatherCode: 1,
+            windSpeed: 10,
+            windGust: 15
+        )
     }
 
     private func date(_ year: Int, _ month: Int, _ day: Int, hour: Int = 0) -> Date {

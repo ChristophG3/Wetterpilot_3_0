@@ -253,6 +253,38 @@ enum HourlyWeatherSummary: Equatable, Sendable {
     }
 }
 
+enum HourlyScrollTarget {
+    static func targetID(
+        for dayDate: Date,
+        hours: [WeatherHour],
+        now: Date = .now,
+        calendar: Calendar = .autoupdatingCurrent
+    ) -> String? {
+        guard !hours.isEmpty else { return nil }
+        let desiredHour: Int
+        if calendar.isDate(dayDate, inSameDayAs: now) {
+            let components = calendar.dateComponents([.hour, .minute], from: now)
+            desiredHour = min(
+                23,
+                (components.hour ?? 0) + ((components.minute ?? 0) > 0 ? 1 : 0)
+            )
+        } else {
+            desiredHour = 8
+        }
+        return hours.first {
+            hourValue($0.timeISO) >= desiredHour
+        }?.id ?? hours.last?.id
+    }
+
+    private static func hourValue(_ iso: String) -> Int {
+        guard let time = iso.split(separator: "T").last,
+              let hour = Int(time.split(separator: ":").first ?? "") else {
+            return 0
+        }
+        return hour
+    }
+}
+
 enum TemperatureUnit: String, CaseIterable, Identifiable {
     case celsius
     case fahrenheit

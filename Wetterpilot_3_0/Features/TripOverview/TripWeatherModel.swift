@@ -12,7 +12,12 @@ struct WeatherCacheEntry: Codable, Equatable, Sendable {
 enum WeatherCachePolicy {
     static let freshnessInterval: TimeInterval = 3 * 60 * 60
     static func isFresh(_ entry: WeatherCacheEntry, now: Date = .now) -> Bool {
-        now.timeIntervalSince(entry.fetchedAt) >= 0 && now.timeIntervalSince(entry.fetchedAt) < freshnessInterval
+        isFresh(fetchedAt: entry.fetchedAt, now: now)
+    }
+
+    static func isFresh(fetchedAt: Date, now: Date = .now) -> Bool {
+        now.timeIntervalSince(fetchedAt) >= 0
+            && now.timeIntervalSince(fetchedAt) < freshnessInterval
     }
 }
 
@@ -33,6 +38,11 @@ actor WeatherCacheStore {
     func entry(for key: String) -> WeatherCacheEntry? {
         loadIfNeeded()
         return entries?[key]
+    }
+
+    func reloadFromDisk() {
+        entries = nil
+        loadIfNeeded()
     }
 
     func save(_ entry: WeatherCacheEntry) throws {
@@ -58,6 +68,204 @@ actor WeatherCacheStore {
             return
         }
         entries = decoded
+    }
+}
+
+struct TripCardSegmentSnapshot: Sendable {
+    let id: UUID
+    let placeName: String
+    let startDate: Date
+    let endDate: Date
+    let latitude: Double?
+    let longitude: Double?
+}
+
+enum TripCardForecastSummary: Equatable, Sendable {
+    case predominantlyDry
+    case mixed(affectedDays: Int)
+    case rainPossible(days: Int)
+    case complete
+    case partial(availableDays: Int, totalDays: Int)
+    case availableFrom(Date)
+    case noCurrentData
+}
+
+struct TripCardWeatherSummary: Equatable, Sendable {
+    let forecast: TripCardForecastSummary
+    let isStale: Bool
+    let recommendedStartDate: Date?
+
+    var symbolName: String {
+        if isStale { return "clock.arrow.circlepath" }
+        switch forecast {
+        case .predominantlyDry: return "sun.max"
+        case .mixed: return "cloud.sun"
+        case .rainPossible: return "cloud.rain"
+        case .complete: return "checkmark.icloud"
+        case .partial: return "rectangle.split.3x1"
+        case .availableFrom: return "calendar.badge.clock"
+        case .noCurrentData: return "cloud.slash"
+        }
+    }
+}
+
+enum TripCardWeatherSummaryEngine {
+    static func evaluate(
+        segments: [TripCardSegmentSnapshot],
+        flexibility: TripStartFlexibility,
+        weatherByDay: [WeatherDayKey: WeatherDay],
+        fetchedAt: [Date],
+        preferences: TravelWeatherPreferences,
+        now: Date = .now,
+        calendar: Calendar = .autoupdatingCurrent
+    ) -> TripCardWeatherSummary? {
+        guard let endDate = segments.map(\.endDate).max(),
+              endDate >= calendar.startOfDay(for: now) else {
+            return nil
+        }
+
+        let flexibleSegments = segments.map {
+            FlexibleTripSegmentSnapshot(
+                id: $0.id,
+                placeName: $0.placeName,
+                startDate: $0.startDate,
+                endDate: $0.endDate
+            )
+        }
+        let comparison = FlexibleTripStartEngine.compare(
+            segments: flexibleSegments,
+            flexibility: flexibility,
+            weatherByDay: weatherByDay,
+            preferences: preferences,
+            now: now,
+            calendar: calendar
+        )
+        guard let candidate = comparison.candidate(
+            offset: comparison.recommendedOffset ?? 0
+        ) ?? comparison.candidates.first else {
+            return TripCardWeatherSummary(
+                forecast: .noCurrentData,
+                isStale: false,
+                recommendedStartDate: nil
+            )
+        }
+
+        let isStale = !fetchedAt.isEmpty && fetchedAt.contains {
+            !WeatherCachePolicy.isFresh(fetchedAt: $0, now: now)
+        }
+        let recommendedDate = flexibility != .exact
+            && comparison.hasFairCommonBasis
+            && comparison.recommendedOffset != nil
+            ? candidate.startDate
+            : nil
+
+        let forecast: TripCardForecastSummary
+        switch candidate.forecastState {
+        case .complete:
+            let rainDays = Set(candidate.assessment.violations.compactMap { violation -> String? in
+                guard violation.kind == .rainProbability
+                        || violation.kind == .precipitationAmount else {
+                    return nil
+                }
+                return WeatherDateKey.make(from: violation.date, calendar: calendar)
+            }).count
+            if rainDays >= 2 {
+                forecast = .rainPossible(days: rainDays)
+            } else if candidate.assessment.affectedDayCount > 0 {
+                forecast = .mixed(affectedDays: candidate.assessment.affectedDayCount)
+            } else {
+                let days = candidate.shiftedTimeline.compactMap {
+                    weatherByDay[WeatherDayKey(
+                        segmentID: $0.segmentID,
+                        dateISO: WeatherDateKey.make(from: $0.date, calendar: calendar)
+                    )]
+                }
+                forecast = !days.isEmpty && days.allSatisfy(DestinationComparisonEngine.isExpectedDry)
+                    ? .predominantlyDry
+                    : .complete
+            }
+        case .partial(let availableDays, let totalDays, _):
+            forecast = .partial(availableDays: availableDays, totalDays: totalDays)
+        case .unavailable(let expectedAvailabilityDate):
+            if let expectedAvailabilityDate,
+               expectedAvailabilityDate > calendar.startOfDay(for: now) {
+                forecast = .availableFrom(expectedAvailabilityDate)
+            } else {
+                forecast = .noCurrentData
+            }
+        }
+
+        return TripCardWeatherSummary(
+            forecast: forecast,
+            isStale: isStale,
+            recommendedStartDate: recommendedDate
+        )
+    }
+}
+
+@MainActor
+final class TripListWeatherSummaryModel: ObservableObject {
+    @Published private(set) var summaries: [UUID: TripCardWeatherSummary] = [:]
+    private let cache: WeatherCacheStore
+
+    init(cache: WeatherCacheStore = WeatherCacheStore()) {
+        self.cache = cache
+    }
+
+    func load(trips: [Trip], preferences: TravelWeatherPreferences) async {
+        await cache.reloadFromDisk()
+        var result: [UUID: TripCardWeatherSummary] = [:]
+
+        for trip in trips {
+            let snapshots = trip.sortedSegments.map {
+                TripCardSegmentSnapshot(
+                    id: $0.id,
+                    placeName: $0.placeName,
+                    startDate: $0.startDate,
+                    endDate: $0.endDate,
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+            }
+            var weatherByDay: [WeatherDayKey: WeatherDay] = [:]
+            var fetchedAt: [Date] = []
+            var loadedCoordinateKeys: Set<String> = []
+
+            for segment in snapshots {
+                guard let latitude = segment.latitude,
+                      let longitude = segment.longitude else {
+                    continue
+                }
+                let coordinateKey = TripWeatherModel.coordinateKey(
+                    latitude: latitude,
+                    longitude: longitude
+                )
+                guard let entry = await cache.entry(for: coordinateKey) else {
+                    continue
+                }
+                if loadedCoordinateKeys.insert(coordinateKey).inserted {
+                    fetchedAt.append(entry.fetchedAt)
+                }
+                for day in entry.days {
+                    weatherByDay[WeatherDayKey(
+                        segmentID: segment.id,
+                        dateISO: day.dateISO
+                    )] = day
+                }
+            }
+
+            if let summary = TripCardWeatherSummaryEngine.evaluate(
+                segments: snapshots,
+                flexibility: trip.startFlexibility,
+                weatherByDay: weatherByDay,
+                fetchedAt: fetchedAt,
+                preferences: preferences
+            ) {
+                result[trip.id] = summary
+            }
+        }
+
+        summaries = result
     }
 }
 

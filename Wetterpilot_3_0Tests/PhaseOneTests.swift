@@ -53,6 +53,35 @@ final class PhaseOneTests: XCTestCase {
         XCTAssertFalse(WeatherCachePolicy.isFresh(stale))
     }
 
+    func testCacheReaderCanReloadUpdatesWrittenByAnotherInstance() async throws {
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString)
+            .appendingPathComponent("cache.json")
+        let reader = WeatherCacheStore(fileURL: url)
+        let writer = WeatherCacheStore(fileURL: url)
+        let stale = cacheEntry(
+            fetchedAt: Date(timeIntervalSinceNow: -(WeatherCachePolicy.freshnessInterval + 60))
+        )
+        try await writer.save(stale)
+        let initiallyRead = await reader.entry(for: stale.coordinateKey)
+        XCTAssertEqual(
+            try XCTUnwrap(initiallyRead).fetchedAt.timeIntervalSince1970,
+            stale.fetchedAt.timeIntervalSince1970,
+            accuracy: 1
+        )
+
+        let fresh = cacheEntry(fetchedAt: .now)
+        try await writer.save(fresh)
+        await reader.reloadFromDisk()
+
+        let reloaded = await reader.entry(for: fresh.coordinateKey)
+        XCTAssertEqual(
+            try XCTUnwrap(reloaded).fetchedAt.timeIntervalSince1970,
+            fresh.fetchedAt.timeIntervalSince1970,
+            accuracy: 1
+        )
+    }
+
     @MainActor
     func testOfflineFallbackKeepsExpiredCachedWeather() async throws {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString).appendingPathComponent("cache.json")

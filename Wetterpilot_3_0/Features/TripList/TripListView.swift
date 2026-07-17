@@ -10,61 +10,61 @@ struct TripListView: View {
     @State private var showsQuickTrip = false
     @State private var showsNewComparison = false
     @State private var showsInfo = false
+    @StateObject private var weatherSummaries = TripListWeatherSummaryModel()
 
     var body: some View {
         NavigationStack(path: $path) {
             List {
                 Section {
-                    Button { showsQuickTrip = true } label: {
-                        Label {
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(String(localized: "quickTrip.title")).font(.headline)
-                                Text(String(localized: "quickTrip.list.subtitle")).font(.caption).foregroundStyle(AppTheme.secondaryText)
-                            }
-                        } icon: { Image(systemName: "calendar.badge.checkmark").font(.title2) }
-                        .frame(minHeight: 52)
-                    }
-                    Button { showsNewComparison = true } label: {
-                        Label {
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(String(localized: "comparison.entry.title")).font(.headline)
-                                Text(String(localized: "comparison.entry.subtitle")).font(.caption).foregroundStyle(AppTheme.secondaryText)
-                            }
-                        } icon: { Image(systemName: "arrow.left.arrow.right.circle.fill").font(.title2) }
-                        .frame(minHeight: 52)
-                    }
-                }
-                .themedListRow()
-
-                if !comparisons.isEmpty {
-                    Section {
-                        ForEach(comparisons) { comparison in
-                            NavigationLink(value: comparison) { ComparisonRow(comparison: comparison) }.themedListRow()
-                        }
-                        .onDelete(perform: deleteComparisons)
-                    } header: {
-                        Text(String(localized: "comparison.myComparisons"))
-                            .font(.title2.bold()).foregroundStyle(AppTheme.primaryText).textCase(nil)
-                    }
-                }
-
-                Section {
                     if trips.isEmpty {
                         ContentUnavailableView {
                             Label(String(localized: "trip.empty.title"), systemImage: "map")
-                        } description: { Text(String(localized: "trip.empty.description")) }
-                        .frame(maxWidth: .infinity).padding(.vertical, 60)
-                        .listRowBackground(Color.clear).listRowSeparator(.hidden)
+                        } description: {
+                            Text(String(localized: "trip.empty.description"))
+                        } actions: {
+                            Button(String(localized: "trip.new")) {
+                                showsNewTrip = true
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.large)
+                            .frame(minHeight: 44)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                     } else {
                         ForEach(trips) { trip in
-                            NavigationLink(value: trip) { TripRow(trip: trip) }.themedListRow()
+                            NavigationLink(value: trip) {
+                                TripRow(
+                                    trip: trip,
+                                    weatherSummary: weatherSummaries.summaries[trip.id]
+                                )
+                            }
+                            .themedListRow()
                         }
                         .onDelete(perform: deleteTrips)
                     }
                 } header: {
                     Text(String(localized: "trip.myTrips")).font(.title2.bold()).foregroundStyle(AppTheme.primaryText).textCase(nil)
                 }
-                Color.clear.frame(height: 260).listRowBackground(Color.clear).listRowSeparator(.hidden).accessibilityHidden(true)
+
+                if !comparisons.isEmpty {
+                    Section {
+                        ForEach(comparisons) { comparison in
+                            NavigationLink(value: comparison) {
+                                ComparisonRow(comparison: comparison)
+                            }
+                            .themedListRow()
+                        }
+                        .onDelete(perform: deleteComparisons)
+                    } header: {
+                        Text(String(localized: "comparison.myComparisons"))
+                            .font(.title2.bold())
+                            .foregroundStyle(AppTheme.primaryText)
+                            .textCase(nil)
+                    }
+                }
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Wetterpilot")
@@ -78,7 +78,10 @@ struct TripListView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
-                        Button { showsNewTrip = true } label: { Label(String(localized: "trip.new"), systemImage: "map") }
+                        Button { showsNewTrip = true } label: {
+                            Label(String(localized: "trip.new"), systemImage: "plus.circle.fill")
+                        }
+                        Divider()
                         Button { showsQuickTrip = true } label: { Label(String(localized: "quickTrip.title"), systemImage: "calendar.badge.checkmark") }
                         Button { showsNewComparison = true } label: { Label(String(localized: "comparison.entry.title"), systemImage: "arrow.left.arrow.right.circle") }
                     } label: { Image(systemName: "plus").frame(minWidth: 44, minHeight: 44) }
@@ -95,8 +98,21 @@ struct TripListView: View {
             .sheet(isPresented: $showsInfo) { InfoView() }
             .navigationDestination(for: Trip.self) { TripOverviewView(trip: $0) }
             .navigationDestination(for: DestinationComparison.self) { ComparisonOverviewView(comparison: $0) }
+            .task(id: trips.map { "\($0.id.uuidString)-\($0.updatedAt.timeIntervalSinceReferenceDate)" }.joined()) {
+                await loadWeatherSummaries()
+            }
+            .onAppear {
+                Task { await loadWeatherSummaries() }
+            }
             .appScreenStyle()
         }
+    }
+
+    private func loadWeatherSummaries() async {
+        await weatherSummaries.load(
+            trips: trips,
+            preferences: TravelWeatherPreferencesStore.load()
+        )
     }
 
     private func deleteComparisons(at offsets: IndexSet) {
@@ -134,6 +150,8 @@ private struct ComparisonRow: View {
 
 private struct TripRow: View {
     let trip: Trip
+    let weatherSummary: TripCardWeatherSummary?
+
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
             Text(trip.name).font(.headline)
@@ -156,7 +174,55 @@ private struct TripRow: View {
                 .font(.caption)
                 .foregroundStyle(AppTheme.secondaryText)
             }
+            if let weatherSummary {
+                Label(
+                    weatherText(weatherSummary),
+                    systemImage: weatherSummary.symbolName
+                )
+                .font(.caption)
+                .foregroundStyle(AppTheme.secondaryText)
+                .fixedSize(horizontal: false, vertical: true)
+
+                if let recommendedStartDate = weatherSummary.recommendedStartDate {
+                    Label(
+                        String(
+                            localized: "trip.card.weather.recommendedStart \(recommendedStartDate.formatted(date: .long, time: .omitted))"
+                        ),
+                        systemImage: "star.fill"
+                    )
+                    .font(.caption)
+                    .foregroundStyle(AppTheme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+                }
+            }
         }
         .padding(.vertical, 7).accessibilityElement(children: .combine)
+    }
+
+    private func weatherText(_ summary: TripCardWeatherSummary) -> String {
+        if summary.isStale {
+            return String(localized: "trip.card.weather.stale")
+        }
+        switch summary.forecast {
+        case .predominantlyDry:
+            return String(localized: "trip.card.weather.dry")
+        case .mixed(let affectedDays):
+            if affectedDays == 1 {
+                return String(localized: "trip.card.weather.mixedOne")
+            }
+            return String(localized: "trip.card.weather.mixed \(affectedDays)")
+        case .rainPossible(let days):
+            return String(localized: "trip.card.weather.rain \(days)")
+        case .complete:
+            return String(localized: "trip.card.weather.complete")
+        case .partial(let availableDays, let totalDays):
+            return String(localized: "trip.card.weather.partial \(availableDays) \(totalDays)")
+        case .availableFrom(let date):
+            return String(
+                localized: "trip.card.weather.availableFrom \(date.formatted(date: .long, time: .omitted))"
+            )
+        case .noCurrentData:
+            return String(localized: "trip.card.weather.none")
+        }
     }
 }
