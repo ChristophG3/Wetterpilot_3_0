@@ -42,6 +42,11 @@
 		A10000000000000000000023 /* FlexibleTripStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000023 /* FlexibleTripStart.swift */; };
 		A10000000000000000000024 /* TravelWeatherPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000024 /* TravelWeatherPreferencesView.swift */; };
 		A10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */; };
+		A10000000000000000000026 /* IntroductionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000026 /* IntroductionState.swift */; };
+		A10000000000000000000027 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000027 /* IntroductionView.swift */; };
+		A10000000000000000000028 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = V10000000000000000000001 /* LaunchScreen.storyboard */; };
+		A10000000000000000000029 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = V10000000000000000000002 /* InfoPlist.strings */; };
+		A1000000000000000000002A /* IntroductionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000000000000000000002D /* IntroductionStateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +97,14 @@
 		B10000000000000000000023 /* FlexibleTripStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleTripStart.swift; sourceTree = "<group>"; };
 		B10000000000000000000024 /* TravelWeatherPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelWeatherPreferencesView.swift; sourceTree = "<group>"; };
 		B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseThreeFlexibleStartTests.swift; sourceTree = "<group>"; };
+		B10000000000000000000026 /* IntroductionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionState.swift; sourceTree = "<group>"; };
+		B10000000000000000000027 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		B10000000000000000000028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B10000000000000000000029 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B1000000000000000000002A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B1000000000000000000002B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1000000000000000000002C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1000000000000000000002D /* IntroductionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionStateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +154,7 @@
 			children = (
 				B10000000000000000000001 /* WetterpilotApp.swift */,
 				B10000000000000000000019 /* ForecastNotificationManager.swift */,
+				B10000000000000000000026 /* IntroductionState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -193,6 +207,7 @@
 				G10000000000000000000014 /* DayWeatherDetail */,
 				G10000000000000000000015 /* Info */,
 				G10000000000000000000016 /* Comparison */,
+				G10000000000000000000017 /* Onboarding */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -231,6 +246,8 @@
 				B1000000000000000000000A /* Assets.xcassets */,
 				B1000000000000000000000B /* PrivacyInfo.xcprivacy */,
 				B1000000000000000000001B /* Localizable.xcstrings */,
+				V10000000000000000000001 /* LaunchScreen.storyboard */,
+				V10000000000000000000002 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -243,6 +260,7 @@
 				B1000000000000000000001C /* PhaseOneTests.swift */,
 				B10000000000000000000022 /* PhaseTwoTests.swift */,
 				B10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift */,
+				B1000000000000000000002D /* IntroductionStateTests.swift */,
 			);
 			path = Wetterpilot_3_0Tests;
 			sourceTree = "<group>";
@@ -262,6 +280,14 @@
 				B1000000000000000000000F /* Wetterpilot_3_0Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000017 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000027 /* IntroductionView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		G10000000000000000000010 /* Data */ = {
@@ -319,6 +345,28 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXVariantGroup section */
+		V10000000000000000000001 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B10000000000000000000028 /* Base */,
+				B10000000000000000000029 /* de */,
+				B1000000000000000000002A /* en */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		V10000000000000000000002 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1000000000000000000002B /* de */,
+				B1000000000000000000002C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin PBXNativeTarget section */
 		E10000000000000000000001 /* Wetterpilot_3_0 */ = {
@@ -403,6 +451,8 @@
 				A1000000000000000000000A /* Assets.xcassets in Resources */,
 				A1000000000000000000000B /* PrivacyInfo.xcprivacy in Resources */,
 				A1000000000000000000001B /* Localizable.xcstrings in Resources */,
+				A10000000000000000000028 /* LaunchScreen.storyboard in Resources */,
+				A10000000000000000000029 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +496,8 @@
 				A10000000000000000000021 /* ComparisonOverviewView.swift in Sources */,
 				A10000000000000000000023 /* FlexibleTripStart.swift in Sources */,
 				A10000000000000000000024 /* TravelWeatherPreferencesView.swift in Sources */,
+				A10000000000000000000026 /* IntroductionState.swift in Sources */,
+				A10000000000000000000027 /* IntroductionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +510,7 @@
 				A1000000000000000000001C /* PhaseOneTests.swift in Sources */,
 				A10000000000000000000022 /* PhaseTwoTests.swift in Sources */,
 				A10000000000000000000025 /* PhaseThreeFlexibleStartTests.swift in Sources */,
+				A1000000000000000000002A /* IntroductionStateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +576,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Wetterpilot;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = CGAS.Wetterpilot3;
@@ -549,7 +602,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Wetterpilot;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = CGAS.Wetterpilot3;

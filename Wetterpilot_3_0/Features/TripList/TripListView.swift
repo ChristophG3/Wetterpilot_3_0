@@ -10,6 +10,7 @@ struct TripListView: View {
     @State private var showsQuickTrip = false
     @State private var showsNewComparison = false
     @State private var showsInfo = false
+    @State private var showsIntroduction = false
     @StateObject private var weatherSummaries = TripListWeatherSummaryModel()
 
     var body: some View {
@@ -67,14 +68,25 @@ struct TripListView: View {
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationTitle("Wetterpilot")
+            .navigationTitle(String(localized: "app.name"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button { showsInfo = true } label: {
+                    Menu {
+                        Button { showsInfo = true } label: {
+                            Label(String(localized: "menu.info"), systemImage: "info.circle")
+                        }
+                        Button { showsIntroduction = true } label: {
+                            Label(
+                                String(localized: "introduction.show"),
+                                systemImage: "sparkles.rectangle.stack"
+                            )
+                        }
+                    } label: {
                         Image(systemName: "ellipsis.circle").imageScale(.large).symbolRenderingMode(.hierarchical)
                     }
-                    .accessibilityLabel(String(localized: "menu.info"))
+                    .frame(minWidth: 44, minHeight: 44)
+                    .accessibilityLabel(String(localized: "menu.more"))
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Menu {
@@ -96,6 +108,11 @@ struct TripListView: View {
                 ComparisonEditorView { comparison in Task { @MainActor in path.append(comparison) } }
             }
             .sheet(isPresented: $showsInfo) { InfoView() }
+            .fullScreenCover(isPresented: $showsIntroduction) {
+                IntroductionView(mode: .manual) {
+                    showsIntroduction = false
+                }
+            }
             .navigationDestination(for: Trip.self) { TripOverviewView(trip: $0) }
             .navigationDestination(for: DestinationComparison.self) { ComparisonOverviewView(comparison: $0) }
             .task(id: trips.map { "\($0.id.uuidString)-\($0.updatedAt.timeIntervalSinceReferenceDate)" }.joined()) {

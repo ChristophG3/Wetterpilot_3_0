@@ -8,7 +8,7 @@ struct InfoView: View {
     private var displayName: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
             ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-            ?? "Wetterpilot"
+            ?? String(localized: "app.name")
     }
 
     private var version: String {
@@ -21,7 +21,7 @@ struct InfoView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    Text("Wetterpilot")
+                    Text(String(localized: "app.name"))
                         .font(.largeTitle.bold())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 20)
@@ -118,7 +118,7 @@ private struct PrivacyPolicyView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Datenschutzerklärung").font(.title.bold())
-                Text("Datenschutz ist uns wichtig. Wetterpilot verarbeitet nur Daten, die für die Funktionen der App erforderlich sind.")
+                Text(String(localized: "privacy.appData"))
                 privacySection(
                     "Welche Daten werden verarbeitet?",
                     "Reisen, Orte und Reisetage werden lokal auf deinem Gerät gespeichert. Für Ortsvorschläge wird der eingegebene Ortsname an Open‑Meteo übertragen. Für Wettervorhersagen werden die Koordinaten des ausgewählten Ortes übertragen. Es werden keine Nutzerkennung, Bewegungshistorie oder aktuelle Geräteposition gesendet."

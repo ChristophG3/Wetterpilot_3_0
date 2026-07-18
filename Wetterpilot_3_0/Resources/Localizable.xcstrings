@@ -86,6 +86,22 @@
         }
       }
     },
+    "app.name" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetterpilot"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weatherpilot"
+          }
+        }
+      }
+    },
     "Aufbewahrung" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -805,7 +821,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wetterpilot can send one local notification when the shared period enters the 16-day window. It does not promise background updates or weather-change notifications."
+            "value" : "Weatherpilot can send one local notification when the shared period enters the 16-day window. It does not promise background updates or weather-change notifications."
           }
         }
       }
@@ -1099,6 +1115,7 @@
       }
     },
     "Datenschutz ist uns wichtig. Wetterpilot verarbeitet nur Daten, die für die Funktionen der App erforderlich sind." : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1109,7 +1126,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Privacy matters to us. Wetterpilot only processes data required for the app's features."
+            "value" : "Privacy matters to us. Weatherpilot only processes data required for the app's features."
           }
         }
       }
@@ -1583,6 +1600,258 @@
         }
       }
     },
+    "introduction.back" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
+    "introduction.continue" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
+    "introduction.decide.body" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prüfe einen einzelnen Ausflug oder vergleiche mehrere Orte für denselben Reisezeitraum."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check a single day trip or compare multiple places for the same travel period."
+          }
+        }
+      }
+    },
+    "introduction.decide.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnell entscheiden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decide quickly"
+          }
+        }
+      }
+    },
+    "introduction.done" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "introduction.flexible.body" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergleiche alternative Starttage und finde anhand deiner Wetterpräferenzen den passendsten Reisezeitraum."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare alternative start dates and find the most suitable travel period based on your weather preferences."
+          }
+        }
+      }
+    },
+    "introduction.flexible.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flexibel starten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a flexible start"
+          }
+        }
+      }
+    },
+    "introduction.getStarted" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loslegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get started"
+          }
+        }
+      }
+    },
+    "introduction.page %lld %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seite %1$lld von %2$lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "introduction.plan.body" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plane Reisen mit mehreren Orten und sieh das Wetter passend zu jedem Reisetag."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan trips with multiple places and see the weather for each day of your journey."
+          }
+        }
+      }
+    },
+    "introduction.plan.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reisen planen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan your trips"
+          }
+        }
+      }
+    },
+    "introduction.show" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einführung anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show introduction"
+          }
+        }
+      }
+    },
+    "introduction.skip" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überspringen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
+          }
+        }
+      }
+    },
+    "introduction.weather.body" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sieh Tagesprognosen, Stundenverläufe und wichtige Wetterhinweise für deine Aufenthalte."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View daily forecasts, hourly conditions, and useful weather insights for every stop."
+          }
+        }
+      }
+    },
+    "introduction.weather.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wetter für jeden Reisetag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather for every travel day"
+          }
+        }
+      }
+    },
     "Jedem Reisetag muss ein fester Ort zugeordnet sein." : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1715,6 +1984,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Info and settings"
+          }
+        }
+      }
+    },
+    "menu.more" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weitere Optionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More options"
           }
         }
       }
@@ -2022,7 +2307,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wetterpilot can send one local notification when the first travel day enters the 16-day forecast window. The app does not promise background updates and does not notify about weather changes."
+            "value" : "Weatherpilot can send one local notification when the first travel day enters the 16-day forecast window. The app does not promise background updates and does not notify about weather changes."
           }
         }
       }
@@ -2054,7 +2339,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wetterpilot can send one local notification when all flexible start options are expected to be fairly comparable. It does not promise background updates or weather-change notifications."
+            "value" : "Weatherpilot can send one local notification when all flexible start options are expected to be fairly comparable. It does not promise background updates or weather-change notifications."
           }
         }
       }
@@ -2201,6 +2486,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Searching places…"
+          }
+        }
+      }
+    },
+    "privacy.appData" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutz ist uns wichtig. Wetterpilot verarbeitet nur Daten, die für die Funktionen der App erforderlich sind."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy matters to us. Weatherpilot only processes data required for the app's features."
           }
         }
       }
@@ -4428,9 +4729,6 @@
           }
         }
       }
-    },
-    "Wetterpilot" : {
-
     },
     "Wofür werden die Daten verwendet?" : {
       "extractionState" : "stale",

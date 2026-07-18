@@ -3,9 +3,19 @@ import SwiftUI
 
 @main
 struct WetterpilotApp: App {
-    private let modelContainer: ModelContainer = {
+    @StateObject private var introductionCoordinator: IntroductionCoordinator
+    private let modelContainer: ModelContainer
+
+    init() {
+        let legacyInstallationDetected = ExistingInstallationDetector.hasLegacyEvidence()
+        _introductionCoordinator = StateObject(
+            wrappedValue: IntroductionCoordinator(
+                legacyInstallationDetected: legacyInstallationDetected
+            )
+        )
+
         do {
-            return try ModelContainer(
+            modelContainer = try ModelContainer(
                 for: Trip.self,
                 TripSegment.self,
                 DestinationComparison.self,
@@ -14,11 +24,17 @@ struct WetterpilotApp: App {
         } catch {
             fatalError("Die lokale Reisedatenbank konnte nicht erstellt werden: \(error)")
         }
-    }()
+    }
 
     var body: some Scene {
         WindowGroup {
-            TripListView()
+            if introductionCoordinator.shouldPresentAutomatically {
+                IntroductionView(mode: .automatic) {
+                    introductionCoordinator.complete()
+                }
+            } else {
+                TripListView()
+            }
         }
         .modelContainer(modelContainer)
     }
