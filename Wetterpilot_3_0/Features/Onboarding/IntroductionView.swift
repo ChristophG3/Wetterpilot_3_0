@@ -104,6 +104,7 @@ struct IntroductionView: View {
             .padding(.bottom, 20)
         }
         .frame(maxWidth: .infinity)
+        .adaptiveContentWidth()
     }
 
     private var topBar: some View {

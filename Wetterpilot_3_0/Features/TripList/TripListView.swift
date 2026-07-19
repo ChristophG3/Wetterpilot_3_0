@@ -68,6 +68,7 @@ struct TripListView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .adaptiveContentWidth()
             .navigationTitle(String(localized: "app.name"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {

@@ -87,6 +87,8 @@ struct ComparisonEditorView: View {
                 }
                 .themedListRow()
             }
+            .scrollDismissesKeyboard(.interactively)
+            .adaptiveContentWidth()
             .appScreenStyle()
             .navigationTitle(comparison == nil ? String(localized: "comparison.new") : String(localized: "comparison.edit"))
             .navigationBarTitleDisplayMode(.inline)

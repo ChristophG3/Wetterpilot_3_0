@@ -30,6 +30,25 @@ enum AppTheme {
     }
 }
 
+enum AppContentWidth: CGFloat {
+    case standard = 760
+    case detail = 960
+}
+
+enum AppLayoutMetrics {
+    static func maximumWidth(
+        for contentWidth: AppContentWidth,
+        horizontalSizeClass: UserInterfaceSizeClass?,
+        dynamicTypeSize: DynamicTypeSize
+    ) -> CGFloat? {
+        guard horizontalSizeClass == .regular,
+              !dynamicTypeSize.isAccessibilitySize else {
+            return nil
+        }
+        return contentWidth.rawValue
+    }
+}
+
 private extension UIColor {
     convenience init(hex: UInt) {
         self.init(
@@ -63,6 +82,24 @@ private struct SurfaceCardModifier: ViewModifier {
     }
 }
 
+private struct AdaptiveContentWidthModifier: ViewModifier {
+    let contentWidth: AppContentWidth
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    func body(content: Content) -> some View {
+        content
+            .frame(
+                maxWidth: AppLayoutMetrics.maximumWidth(
+                    for: contentWidth,
+                    horizontalSizeClass: horizontalSizeClass,
+                    dynamicTypeSize: dynamicTypeSize
+                ) ?? .infinity
+            )
+            .frame(maxWidth: .infinity)
+    }
+}
+
 struct GradientPrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -88,5 +125,9 @@ extension View {
 
     func surfaceCard() -> some View {
         modifier(SurfaceCardModifier())
+    }
+
+    func adaptiveContentWidth(_ contentWidth: AppContentWidth = .standard) -> some View {
+        modifier(AdaptiveContentWidthModifier(contentWidth: contentWidth))
     }
 }

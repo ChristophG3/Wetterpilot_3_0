@@ -61,6 +61,7 @@ struct TripOverviewView: View {
             .themedListRow()
         }
         .listStyle(.insetGrouped)
+        .adaptiveContentWidth()
         .appScreenStyle()
         .navigationTitle(trip.name)
         .navigationBarTitleDisplayMode(.large)

@@ -48,6 +48,8 @@ struct QuickTripView: View {
                 }
                 .themedListRow()
             }
+            .scrollDismissesKeyboard(.interactively)
+            .adaptiveContentWidth()
             .appScreenStyle()
             .navigationTitle(String(localized: "quickTrip.title"))
             .navigationBarTitleDisplayMode(.inline)

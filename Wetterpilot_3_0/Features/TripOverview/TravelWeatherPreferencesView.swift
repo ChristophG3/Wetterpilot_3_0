@@ -129,6 +129,7 @@ struct TravelWeatherPreferencesView: View {
                 }
                 .themedListRow()
             }
+            .adaptiveContentWidth()
             .appScreenStyle()
             .navigationTitle(String(localized: "trip.preferences.title"))
             .navigationBarTitleDisplayMode(.inline)

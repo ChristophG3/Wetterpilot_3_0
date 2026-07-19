@@ -1,3 +1,4 @@
+import SwiftUI
 import XCTest
 @testable import Wetterpilot_3_0
 
@@ -78,5 +79,51 @@ final class IntroductionStateTests: XCTestCase {
     private func temporaryDirectory() -> URL {
         FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString, isDirectory: true)
+    }
+}
+
+final class AdaptiveLayoutTests: XCTestCase {
+    func testRegularWidthUsesCentralContentLimits() {
+        XCTAssertEqual(
+            AppLayoutMetrics.maximumWidth(
+                for: .standard,
+                horizontalSizeClass: .regular,
+                dynamicTypeSize: .large
+            ),
+            760
+        )
+        XCTAssertEqual(
+            AppLayoutMetrics.maximumWidth(
+                for: .detail,
+                horizontalSizeClass: .regular,
+                dynamicTypeSize: .large
+            ),
+            960
+        )
+    }
+
+    func testCompactWidthKeepsExistingFullWidthLayout() {
+        XCTAssertNil(
+            AppLayoutMetrics.maximumWidth(
+                for: .standard,
+                horizontalSizeClass: .compact,
+                dynamicTypeSize: .large
+            )
+        )
+    }
+
+    func testAccessibilityTextCanUseAvailableWidth() {
+        XCTAssertNil(
+            AppLayoutMetrics.maximumWidth(
+                for: .standard,
+                horizontalSizeClass: .regular,
+                dynamicTypeSize: .accessibility3
+            )
+        )
+    }
+
+    func testBuiltAppDeclaresIPhoneAndIPadFamilies() {
+        let families = Bundle.main.object(forInfoDictionaryKey: "UIDeviceFamily") as? [Int]
+        XCTAssertEqual(Set(families ?? []), Set([1, 2]))
     }
 }

@@ -167,6 +167,8 @@ struct TripEditorView: View {
                 }
                 .themedListRow()
             }
+            .scrollDismissesKeyboard(.interactively)
+            .adaptiveContentWidth()
             .appScreenStyle()
             .navigationTitle(trip == nil ? "Neue Reise" : "Reise bearbeiten")
             .navigationBarTitleDisplayMode(.inline)

@@ -31,6 +31,7 @@ struct ComparisonOverviewView: View {
             .themedListRow()
         }
         .listStyle(.insetGrouped)
+        .adaptiveContentWidth(.detail)
         .appScreenStyle()
         .navigationTitle(comparison.name)
         .navigationBarTitleDisplayMode(.large)
@@ -376,7 +377,9 @@ private struct ComparisonDayView: View {
             }
             .themedListRow()
         }
-        .listStyle(.insetGrouped).appScreenStyle()
+        .listStyle(.insetGrouped)
+        .adaptiveContentWidth(.detail)
+        .appScreenStyle()
         .navigationTitle(
             date(from: dateKey).formatted(.dateTime.weekday(.wide).day().month(.wide))
         )

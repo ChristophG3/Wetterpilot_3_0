@@ -95,6 +95,7 @@ struct InfoView: View {
                     }
                 }
                 .padding(.vertical, 12)
+                .adaptiveContentWidth()
             }
             .navigationTitle("Info")
             .navigationBarTitleDisplayMode(.inline)
@@ -138,6 +139,7 @@ private struct PrivacyPolicyView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(20)
+            .adaptiveContentWidth()
         }
         .navigationTitle("Datenschutz")
         .navigationBarTitleDisplayMode(.inline)
@@ -179,6 +181,7 @@ private struct LicensesView: View {
             .themedListRow()
         }
         .listStyle(.insetGrouped)
+        .adaptiveContentWidth()
         .navigationTitle("Lizenzen")
         .navigationBarTitleDisplayMode(.inline)
         .appScreenStyle()

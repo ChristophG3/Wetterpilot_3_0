@@ -25,11 +25,13 @@ struct DayWeatherDetailView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding()
+                .adaptiveContentWidth(.detail)
             } else {
                 ContentUnavailableView {
                     Label(String(localized: "detail.unavailable.title"), systemImage: "calendar.badge.clock")
                 } description: { Text(unavailableMessage) }
                 .padding(.top, 70)
+                .adaptiveContentWidth()
             }
         }
         .appScreenStyle()
